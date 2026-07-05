@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSync – Explore Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/explore.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon"><i class="fas fa-sync-alt"></i></div>
+                    <span class="logo-text">Skill<span class="logo-highlight">Sync</span></span>
+                </a>
+                <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+            </div>
+            <nav class="sidebar-nav">
+                <span class="nav-label">Main</span>
+                <a href="dashboard.html" class="nav-item"><i class="fas fa-th-large"></i> Dashboard</a>
+                <a href="explore.html" class="nav-item active"><i class="fas fa-compass"></i> Explore Projects</a>
+                <a href="workspace.html" class="nav-item"><i class="fas fa-briefcase"></i> My Workspace</a>
+                <span class="nav-label">Collaborate</span>
+                <a href="#" class="nav-item"><i class="fas fa-users"></i> My Teams</a>
+                <a href="#" class="nav-item"><i class="fas fa-comments"></i> Messages <span class="nav-badge">3</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-bell"></i> Notifications <span class="nav-badge">5</span></a>
+                <span class="nav-label">Account</span>
+                <a href="#" class="nav-item"><i class="fas fa-user-circle"></i> Profile</a>
+                <a href="#" class="nav-item"><i class="fas fa-cog"></i> Settings</a>
+                <a href="index.html" class="nav-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search projects by name, skill, or keyword..." id="projectSearch">
+                </div>
+                <div class="topbar-actions">
+                    <button class="topbar-btn"><i class="fas fa-bell"></i><span class="notif-dot"></span></button>
+                    <div class="user-menu">
+                        <div class="user-avatar">AP</div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="explore-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div>
+                        <h1>Explore Projects</h1>
+                        <p>Discover exciting projects and find your next team</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="document.getElementById('createModal').classList.add('active')">
+                        <i class="fas fa-plus"></i> Create Project
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters-bar">
+                    <div class="filter-chips" id="filterChips">
+                        <button class="chip active" data-filter="all">All Projects</button>
+                        <button class="chip" data-filter="web">Web Dev</button>
+                        <button class="chip" data-filter="mobile">Mobile</button>
+                        <button class="chip" data-filter="ai">AI / ML</button>
+                        <button class="chip" data-filter="design">Design</button>
+                        <button class="chip" data-filter="data">Data Science</button>
+                    </div>
+                    <div class="filter-sort">
+                        <select id="sortSelect">
+                            <option>Most Recent</option>
+                            <option>Most Popular</option>
+                            <option>Deadline Soon</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Card 1 -->
+                    <div class="project-card" data-category="web">
+                        <div class="project-card-header">
+                            <span class="project-category" style="background:rgba(99,102,241,0.15);color:#a78bfa;">Web Dev</span>
+                            <span class="project-status open">Open</span>
+                        </div>
+                        <h3 class="project-title">SkillSync Platform</h3>
+                        <p class="project-desc">A collaboration hub for students to find teammates, manage projects, and build portfolios together.</p>
+                        <div class="project-leader">
+                            <div class="leader-avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">AP</div>
+                            <span>Led by <strong>Arjun Patel</strong></span>
+                        </div>
+                        <div class="project-skills">
+                            <span>React</span><span>Node.js</span><span>MongoDB</span><span>CSS</span>
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item"><i class="fas fa-users"></i> 3/5 members</div>
+                            <div class="meta-item"><i class="fas fa-calendar"></i> Jul 15, 2026</div>
+                        </div>
+                        <div class="project-progress">
+                            <div class="progress-info"><span>Progress</span><span>45%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" style="width:45%;background:linear-gradient(90deg,#6366f1,#a78bfa);"></div></div>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="window.location.href='workspace.html'">
+                            <i class="fas fa-arrow-right"></i> Join Project
+                        </button>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="project-card" data-category="ai">
+                        <div class="project-card-header">
+                            <span class="project-category" style="background:rgba(16,185,129,0.15);color:#10b981;">AI / ML</span>
+                            <span class="project-status open">Open</span>
+                        </div>
+                        <h3 class="project-title">MedScan AI</h3>
+                        <p class="project-desc">Deep learning model for medical image analysis to detect anomalies in X-ray and MRI scans.</p>
+                        <div class="project-leader">
+                            <div class="leader-avatar" style="background:linear-gradient(135deg,#f59e0b,#f97316);">PM</div>
+                            <span>Led by <strong>Priya Menon</strong></span>
+                        </div>
+                        <div class="project-skills">
+                            <span>Python</span><span>TensorFlow</span><span>OpenCV</span><span>Flask</span>
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item"><i class="fas fa-users"></i> 2/4 members</div>
+                            <div class="meta-item"><i class="fas fa-calendar"></i> Aug 1, 2026</div>
+                        </div>
+                        <div class="project-progress">
+                            <div class="progress-info"><span>Progress</span><span>30%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" style="width:30%;background:linear-gradient(90deg,#10b981,#14b8a6);"></div></div>
+                        </div>
+                        <button class="btn btn-primary btn-full"><i class="fas fa-arrow-right"></i> Join Project</button>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="project-card" data-category="mobile">
+                        <div class="project-card-header">
+                            <span class="project-category" style="background:rgba(245,158,11,0.15);color:#f59e0b;">Mobile</span>
+                            <span class="project-status open">Open</span>
+                        </div>
+                        <h3 class="project-title">Campus Connect</h3>
+                        <p class="project-desc">Mobile app connecting students across campuses for events, study groups, and resource sharing.</p>
+                        <div class="project-leader">
+                            <div class="leader-avatar" style="background:linear-gradient(135deg,#10b981,#14b8a6);">RV</div>
+                            <span>Led by <strong>Rahul Verma</strong></span>
+                        </div>
+                        <div class="project-skills">
+                            <span>Flutter</span><span>Firebase</span><span>Dart</span>
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item"><i class="fas fa-users"></i> 4/6 members</div>
+                            <div class="meta-item"><i class="fas fa-calendar"></i> Jul 28, 2026</div>
+                        </div>
+                        <div class="project-progress">
+                            <div class="progress-info"><span>Progress</span><span>65%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" style="width:65%;background:linear-gradient(90deg,#f59e0b,#f97316);"></div></div>
+                        </div>
+                        <button class="btn btn-primary btn-full"><i class="fas fa-arrow-right"></i> Join Project</button>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="project-card" data-category="design">
+                        <div class="project-card-header">
+                            <span class="project-category" style="background:rgba(236,72,153,0.15);color:#ec4899;">Design</span>
+                            <span class="project-status open">Open</span>
+                        </div>
+                        <h3 class="project-title">Brand Studio Kit</h3>
+                        <p class="project-desc">Open-source design system and branding toolkit for student startups and hackathon teams.</p>
+                        <div class="project-leader">
+                            <div class="leader-avatar" style="background:linear-gradient(135deg,#ec4899,#f43f5e);">SK</div>
+                            <span>Led by <strong>Sneha Krishnan</strong></span>
+                        </div>
+                        <div class="project-skills">
+                            <span>Figma</span><span>Illustrator</span><span>CSS</span><span>SVG</span>
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item"><i class="fas fa-users"></i> 2/3 members</div>
+                            <div class="meta-item"><i class="fas fa-calendar"></i> Aug 10, 2026</div>
+                        </div>
+                        <div class="project-progress">
+                            <div class="progress-info"><span>Progress</span><span>20%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" style="width:20%;background:linear-gradient(90deg,#ec4899,#f43f5e);"></div></div>
+                        </div>
+                        <button class="btn btn-primary btn-full"><i class="fas fa-arrow-right"></i> Join Project</button>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="project-card" data-category="data">
+                        <div class="project-card-header">
+                            <span class="project-category" style="background:rgba(20,184,166,0.15);color:#14b8a6;">Data Science</span>
+                            <span class="project-status open">Open</span>
+                        </div>
+                        <h3 class="project-title">DataViz Dashboard</h3>
+                        <p class="project-desc">Interactive analytics dashboard for visualizing student performance and engagement metrics.</p>
+                        <div class="project-leader">
+                            <div class="leader-avatar" style="background:linear-gradient(135deg,#3b82f6,#6366f1);">AK</div>
+                            <span>Led by <strong>Aman Kumar</strong></span>
+                        </div>
+                        <div class="project-skills">
+                            <span>D3.js</span><span>Python</span><span>PostgreSQL</span>
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item"><i class="fas fa-users"></i> 3/4 members</div>
+                            <div class="meta-item"><i class="fas fa-calendar"></i> Jul 20, 2026</div>
+                        </div>
+                        <div class="project-progress">
+                            <div class="progress-info"><span>Progress</span><span>55%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" style="width:55%;background:linear-gradient(90deg,#14b8a6,#06b6d4);"></div></div>
+                        </div>
+                        <button class="btn btn-primary btn-full"><i class="fas fa-arrow-right"></i> Join Project</button>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="project-card" data-category="web">
+                        <div class="project-card-header">
+                            <span class="project-category" style="background:rgba(99,102,241,0.15);color:#a78bfa;">Web Dev</span>
+                            <span class="project-status closed">Full</span>
+                        </div>
+                        <h3 class="project-title">EduStream LMS</h3>
+                        <p class="project-desc">Learning management system with live classes, assignments, and peer review capabilities.</p>
+                        <div class="project-leader">
+                            <div class="leader-avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">DG</div>
+                            <span>Led by <strong>Divya Gupta</strong></span>
+                        </div>
+                        <div class="project-skills">
+                            <span>Next.js</span><span>TypeScript</span><span>Prisma</span>
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item"><i class="fas fa-users"></i> 5/5 members</div>
+                            <div class="meta-item"><i class="fas fa-calendar"></i> Jul 5, 2026</div>
+                        </div>
+                        <div class="project-progress">
+                            <div class="progress-info"><span>Progress</span><span>80%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" style="width:80%;background:linear-gradient(90deg,#6366f1,#a78bfa);"></div></div>
+                        </div>
+                        <button class="btn btn-glass btn-full" disabled><i class="fas fa-lock"></i> Team Full</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Project Modal -->
+    <div class="modal-overlay" id="createModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Create New Project</h3>
+                <button class="modal-close" onclick="document.getElementById('createModal').classList.remove('active')"><i class="fas fa-times"></i></button>
+            </div>
+            <form class="modal-body" onsubmit="event.preventDefault(); document.getElementById('createModal').classList.remove('active');">
+                <div class="form-group">
+                    <label>Project Title</label>
+                    <input type="text" placeholder="Enter project name" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea placeholder="Describe your project..." rows="3" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Category</label>
+                        <select required><option>Web Dev</option><option>Mobile</option><option>AI/ML</option><option>Design</option><option>Data Science</option></select>
+                    </div>
+                    <div class="form-group"><label>Team Size</label>
+                        <input type="number" min="2" max="10" value="4" required>
+                    </div>
+                </div>
+                <div class="form-group"><label>Required Skills</label><input type="text" placeholder="React, Python, Figma..."></div>
+                <div class="form-group"><label>Deadline</label><input type="date" required></div>
+                <button type="submit" class="btn btn-primary btn-full"><i class="fas fa-rocket"></i> Create Project</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/explore.js"></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSync – Project Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/workspace.css">
+</head>
+<body>
+    <div class="workspace-layout">
+        <!-- Left Sidebar -->
+        <aside class="ws-sidebar" id="wsSidebar">
+            <div class="ws-sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon"><i class="fas fa-sync-alt"></i></div>
+                    <span class="logo-text">Skill<span class="logo-highlight">Sync</span></span>
+                </a>
+                <button class="ws-sidebar-close" id="wsSidebarClose"><i class="fas fa-times"></i></button>
+            </div>
+            <nav class="ws-sidebar-nav">
+                <a href="dashboard.html" class="nav-item"><i class="fas fa-th-large"></i> Dashboard</a>
+                <a href="explore.html" class="nav-item"><i class="fas fa-compass"></i> Explore</a>
+                <a href="workspace.html" class="nav-item active"><i class="fas fa-briefcase"></i> Workspace</a>
+                <a href="#" class="nav-item"><i class="fas fa-users"></i> Teams</a>
+                <a href="#" class="nav-item"><i class="fas fa-comments"></i> Messages</a>
+                <a href="#" class="nav-item"><i class="fas fa-cog"></i> Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Area -->
+        <div class="ws-main">
+            <!-- Top Bar -->
+            <header class="ws-topbar">
+                <button class="ws-sidebar-toggle" id="wsSidebarToggle"><i class="fas fa-bars"></i></button>
+                <div class="ws-breadcrumb">
+                    <a href="dashboard.html">Dashboard</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>SkillSync Platform</span>
+                </div>
+                <div class="ws-topbar-actions">
+                    <button class="topbar-btn"><i class="fas fa-bell"></i></button>
+                    <div class="user-avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">AP</div>
+                </div>
+            </header>
+
+            <!-- Project Header -->
+            <div class="project-header">
+                <div class="project-header-left">
+                    <div class="project-icon" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);"><i class="fas fa-code"></i></div>
+                    <div>
+                        <h1>SkillSync Platform</h1>
+                        <p>A collaboration hub for students to find teammates, manage projects, and build portfolios together.</p>
+                    </div>
+                </div>
+                <div class="project-header-right">
+                    <div class="project-header-meta">
+                        <div class="meta-block">
+                            <span class="meta-label">Deadline</span>
+                            <span class="meta-value"><i class="fas fa-calendar"></i> Jul 15, 2026</span>
+                        </div>
+                        <div class="meta-block">
+                            <span class="meta-label">Progress</span>
+                            <div class="header-progress">
+                                <div class="progress-bar-sm"><div class="progress-fill-sm" style="width:45%;"></div></div>
+                                <span>45%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-avatars">
+                        <div class="t-avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);" title="Arjun P.">AP</div>
+                        <div class="t-avatar" style="background:linear-gradient(135deg,#ec4899,#f43f5e);" title="Sneha K.">SK</div>
+                        <div class="t-avatar" style="background:linear-gradient(135deg,#10b981,#14b8a6);" title="Rahul V.">RV</div>
+                        <button class="t-avatar add-member" title="Add member"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workspace Body -->
+            <div class="ws-body">
+                <!-- Kanban Board -->
+                <div class="kanban-board" id="kanbanBoard">
+                    <!-- To Do Column -->
+                    <div class="kanban-column" data-status="todo">
+                        <div class="column-header">
+                            <div class="column-dot" style="background:#8b5cf6;"></div>
+                            <h3>To Do</h3>
+                            <span class="column-count">3</span>
+                            <button class="column-add" title="Add task"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <div class="column-tasks" data-status="todo">
+                            <div class="task-card" draggable="true">
+                                <div class="task-priority high">High</div>
+                                <h4>Design Database Schema</h4>
+                                <p>Create MongoDB collections for users, projects, and tasks</p>
+                                <div class="task-meta">
+                                    <div class="task-assignee" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">AP</div>
+                                    <span class="task-due"><i class="fas fa-clock"></i> Jul 2</span>
+                                </div>
+                            </div>
+                            <div class="task-card" draggable="true">
+                                <div class="task-priority medium">Medium</div>
+                                <h4>Setup CI/CD Pipeline</h4>
+                                <p>Configure GitHub Actions for automated testing and deployment</p>
+                                <div class="task-meta">
+                                    <div class="task-assignee" style="background:linear-gradient(135deg,#10b981,#14b8a6);">RV</div>
+                                    <span class="task-due"><i class="fas fa-clock"></i> Jul 5</span>
+                                </div>
+                            </div>
+                            <div class="task-card" draggable="true">
+                                <div class="task-priority low">Low</div>
+                                <h4>Write API Documentation</h4>
+                                <p>Document all REST endpoints using Swagger</p>
+                                <div class="task-meta">
+                                    <div class="task-assignee" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">AP</div>
+                                    <span class="task-due"><i class="fas fa-clock"></i> Jul 10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- In Progress Column -->
+                    <div class="kanban-column" data-status="progress">
+                        <div class="column-header">
+                            <div class="column-dot" style="background:#3b82f6;"></div>
+                            <h3>In Progress</h3>
+                            <span class="column-count">2</span>
+                            <button class="column-add" title="Add task"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <div class="column-tasks" data-status="progress">
+                            <div class="task-card" draggable="true">
+                                <div class="task-priority high">High</div>
+                                <h4>Build Authentication Module</h4>
+                                <p>JWT-based login, register, and OAuth integration</p>
+                                <div class="task-meta">
+                                    <div class="task-assignee" style="background:linear-gradient(135deg,#10b981,#14b8a6);">RV</div>
+                                    <span class="task-due"><i class="fas fa-clock"></i> Jul 1</span>
+                                </div>
+                            </div>
+                            <div class="task-card" draggable="true">
+                                <div class="task-priority medium">Medium</div>
+                                <h4>Dashboard UI Components</h4>
+                                <p>Build stat cards, charts, and sidebar navigation</p>
+                                <div class="task-meta">
+                                    <div class="task-assignee" style="background:linear-gradient(135deg,#ec4899,#f43f5e);">SK</div>
+                                    <span class="task-due"><i class="fas fa-clock"></i> Jul 3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Column -->
+                    <div class="kanban-column" data-status="review">
+                        <div class="column-header">
+                            <div class="column-dot" style="background:#f59e0b;"></div>
+                            <h3>Review</h3>
+                            <span class="column-count">2</span>
+                            <button class="column-add" title="Add task"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <div class="column-tasks" data-status="review">
+                            <div class="task-card" draggable="true">
+                                <div class="task-priority medium">Medium</div>
+                                <h4>Landing Page Design</h4>
+                                <p>Hero section, features, and responsive layout</p>
+                                <div class="task-meta">
+                                    <div class="task-assignee" style="background:linear-gradient(135deg,#ec4899,#f43f5e);">SK</div>
+                                    <span class="task-due"><i class="fas fa-clock"></i> Jun 28</span>
+                                </div>
+                            </div>
+                            <div class="task-card" draggable="true">
+                                <div class="task-priority low">Low</div>
+                                <h4>Project README</h4>
+                                <p>Setup instructions, tech stack, and contribution guidelines</p>
+                                <div class="task-meta">
+                                    <div class="task-assignee" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">AP</div>
+                                    <span class="task-due"><i class="fas fa-clock"></i> Jun 30</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Completed Column -->
+                    <div class="kanban-column" data-status="done">
+                        <div class="column-header">
+                            <div class="column-dot" style="background:#10b981;"></div>
+                            <h3>Completed</h3>
+                            <span class="column-count">2</span>
+                            <button class="column-add" title="Add task"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <div class="column-tasks" data-status="done">
+                            <div class="task-card" draggable="true">
+                                <div class="task-priority done-badge">Done</div>
+                                <h4>Project Setup & Config</h4>
+                                <p>Initialize repo, setup Express server, and configure env</p>
+                                <div class="task-meta">
+                                    <div class="task-assignee" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">AP</div>
+                                    <span class="task-due"><i class="fas fa-check-circle"></i> Jun 20</span>
+                                </div>
+                            </div>
+                            <div class="task-card" draggable="true">
+                                <div class="task-priority done-badge">Done</div>
+                                <h4>Wireframes & Mockups</h4>
+                                <p>Figma designs for all 5 pages of the app</p>
+                                <div class="task-meta">
+                                    <div class="task-assignee" style="background:linear-gradient(135deg,#ec4899,#f43f5e);">SK</div>
+                                    <span class="task-due"><i class="fas fa-check-circle"></i> Jun 22</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar -->
+                <aside class="ws-right-sidebar" id="wsRightSidebar">
+                    <button class="right-sidebar-toggle" id="rightSidebarToggle"><i class="fas fa-comments"></i></button>
+                    <!-- Team Chat -->
+                    <div class="right-panel">
+                        <div class="panel-header"><h3><i class="fas fa-comments"></i> Team Chat</h3></div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="chat-msg">
+                                <div class="chat-avatar" style="background:linear-gradient(135deg,#ec4899,#f43f5e);">SK</div>
+                                <div class="chat-bubble">
+                                    <span class="chat-name">Sneha K.</span>
+                                    <p>Landing page designs are ready for review! 🎨</p>
+                                    <span class="chat-time">10:30 AM</span>
+                                </div>
+                            </div>
+                            <div class="chat-msg">
+                                <div class="chat-avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">AP</div>
+                                <div class="chat-bubble">
+                                    <span class="chat-name">Arjun P.</span>
+                                    <p>Great work! I'll review them after finishing the auth module.</p>
+                                    <span class="chat-time">10:45 AM</span>
+                                </div>
+                            </div>
+                            <div class="chat-msg">
+                                <div class="chat-avatar" style="background:linear-gradient(135deg,#10b981,#14b8a6);">RV</div>
+                                <div class="chat-bubble">
+                                    <span class="chat-name">Rahul V.</span>
+                                    <p>Auth API is almost done. Testing JWT tokens now 🔐</p>
+                                    <span class="chat-time">11:15 AM</span>
+                                </div>
+                            </div>
+                            <div class="chat-msg">
+                                <div class="chat-avatar" style="background:linear-gradient(135deg,#ec4899,#f43f5e);">SK</div>
+                                <div class="chat-bubble">
+                                    <span class="chat-name">Sneha K.</span>
+                                    <p>Can we do a quick sync call at 2 PM today?</p>
+                                    <span class="chat-time">11:30 AM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" placeholder="Type a message..." id="chatInput">
+                            <button class="chat-send" id="chatSend"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Shared Files -->
+                    <div class="right-panel">
+                        <div class="panel-header"><h3><i class="fas fa-folder"></i> Shared Files</h3></div>
+                        <div class="files-list">
+                            <div class="file-item">
+                                <div class="file-icon" style="background:rgba(99,102,241,0.15);color:#a78bfa;"><i class="fas fa-file-code"></i></div>
+                                <div><h4>api-endpoints.md</h4><p>24 KB • Arjun P.</p></div>
+                            </div>
+                            <div class="file-item">
+                                <div class="file-icon" style="background:rgba(236,72,153,0.15);color:#ec4899;"><i class="fas fa-file-image"></i></div>
+                                <div><h4>ui-mockups.fig</h4><p>3.2 MB • Sneha K.</p></div>
+                            </div>
+                            <div class="file-item">
+                                <div class="file-icon" style="background:rgba(16,185,129,0.15);color:#10b981;"><i class="fas fa-file-alt"></i></div>
+                                <div><h4>project-plan.pdf</h4><p>128 KB • Rahul V.</p></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="right-panel">
+                        <div class="panel-header"><h3><i class="fas fa-history"></i> Activity</h3></div>
+                        <div class="activity-list">
+                            <div class="activity-item-sm">
+                                <div class="activity-dot" style="background:#a78bfa;"></div>
+                                <div><p><strong>Arjun</strong> moved task to Review</p><span>5 min ago</span></div>
+                            </div>
+                            <div class="activity-item-sm">
+                                <div class="activity-dot" style="background:#10b981;"></div>
+                                <div><p><strong>Sneha</strong> completed Landing Page</p><span>1 hr ago</span></div>
+                            </div>
+                            <div class="activity-item-sm">
+                                <div class="activity-dot" style="background:#f59e0b;"></div>
+                                <div><p><strong>Rahul</strong> uploaded api-endpoints.md</p><span>3 hrs ago</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+    <script src="js/workspace.js"></script>
+</body>
+</html>

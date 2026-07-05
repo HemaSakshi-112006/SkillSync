@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login or Register to SkillSync – Student Collaboration & Project Hub">
+    <title>SkillSync – Login / Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <!-- Left Panel - Branding -->
+        <div class="auth-branding">
+            <div class="branding-bg-effects">
+                <div class="branding-orb branding-orb-1"></div>
+                <div class="branding-orb branding-orb-2"></div>
+                <div class="branding-grid"></div>
+            </div>
+            <div class="branding-content">
+                <a href="index.html" class="brand-logo">
+                    <div class="logo-icon"><i class="fas fa-sync-alt"></i></div>
+                    <span class="logo-text">Skill<span class="logo-highlight">Sync</span></span>
+                </a>
+                <h1>Collaborate.<br><span class="gradient-text">Build. Grow.</span></h1>
+                <p>Join 2,500+ students building the future together. Find teammates, manage projects, and accelerate your learning.</p>
+                <div class="branding-features">
+                    <div class="branding-feature">
+                        <div class="bf-icon"><i class="fas fa-users"></i></div>
+                        <div><h4>Smart Matching</h4><p>Find perfect teammates</p></div>
+                    </div>
+                    <div class="branding-feature">
+                        <div class="bf-icon"><i class="fas fa-project-diagram"></i></div>
+                        <div><h4>Project Tools</h4><p>Kanban boards & tracking</p></div>
+                    </div>
+                    <div class="branding-feature">
+                        <div class="bf-icon"><i class="fas fa-comments"></i></div>
+                        <div><h4>Team Chat</h4><p>Real-time collaboration</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Forms -->
+        <div class="auth-forms-panel">
+            <div class="auth-forms-container">
+                <!-- Login Form -->
+                <div class="auth-form-wrapper" id="loginForm">
+                    <div class="form-header">
+                        <h2>Welcome back</h2>
+                        <p>Enter your credentials to access your account</p>
+                    </div>
+                    <form class="auth-form" onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="loginEmail" placeholder="you@college.edu" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                                <button type="button" class="toggle-password" onclick="togglePassword('loginPassword', this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Remember me
+                            </label>
+                            <a href="#" class="forgot-link">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-sign-in-alt"></i> Sign In
+                        </button>
+                    </form>
+                    <div class="form-divider"><span>or continue with</span></div>
+                    <div class="social-login">
+                        <button class="social-btn"><i class="fab fa-google"></i> Google</button>
+                        <button class="social-btn"><i class="fab fa-github"></i> GitHub</button>
+                    </div>
+                    <p class="form-switch">
+                        Don't have an account? <a href="#" onclick="showRegister(event)">Create one</a>
+                    </p>
+                </div>
+
+                <!-- Register Form -->
+                <div class="auth-form-wrapper hidden" id="registerForm">
+                    <div class="form-header">
+                        <h2>Create your account</h2>
+                        <p>Start your collaboration journey today</p>
+                    </div>
+                    <form class="auth-form" onsubmit="handleRegister(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="regName">Full Name</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="regName" placeholder="John Doe" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="regEmail">Email Address</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="regEmail" placeholder="you@college.edu" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="regPassword" placeholder="Min 8 characters" required minlength="8">
+                                <button type="button" class="toggle-password" onclick="togglePassword('regPassword', this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="regCollege">College</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-university"></i>
+                                    <input type="text" id="regCollege" placeholder="Your college" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="regBranch">Branch</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-code-branch"></i>
+                                    <select id="regBranch" required>
+                                        <option value="">Select Branch</option>
+                                        <option>Computer Science</option>
+                                        <option>Information Technology</option>
+                                        <option>Electronics</option>
+                                        <option>Mechanical</option>
+                                        <option>Design</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="regSemester">Semester</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <select id="regSemester" required>
+                                        <option value="">Select</option>
+                                        <option>1st</option><option>2nd</option>
+                                        <option>3rd</option><option>4th</option>
+                                        <option>5th</option><option>6th</option>
+                                        <option>7th</option><option>8th</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="regSkills">Skills</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-tools"></i>
+                                    <input type="text" id="regSkills" placeholder="React, Python, UI/UX...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Profile Picture</label>
+                            <div class="file-upload" onclick="document.getElementById('regAvatar').click()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to upload or drag and drop</p>
+                                <span>PNG, JPG up to 5MB</span>
+                                <input type="file" id="regAvatar" accept="image/*" hidden>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                    </form>
+                    <p class="form-switch">
+                        Already have an account? <a href="#" onclick="showLogin(event)">Sign in</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkillSync – Find teammates, build projects, and learn together. The ultimate student collaboration and project hub.">
+    <title>SkillSync – Student Collaboration & Project Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <span class="logo-text">Skill<span class="logo-highlight">Sync</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#stats">Stats</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-ghost">Login</a>
+                <a href="login.html#register" class="btn btn-primary">Register</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-effects">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+            <div class="hero-grid-pattern"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-rocket"></i>
+                    <span>The Future of Student Collaboration</span>
+                </div>
+                <h1 class="hero-title">
+                    Find teammates.<br>
+                    <span class="gradient-text">Build projects.</span><br>
+                    Learn together.
+                </h1>
+                <p class="hero-subtitle">
+                    SkillSync connects students with complementary skills to form powerful teams, 
+                    manage projects efficiently, and build real-world experience together.
+                </p>
+                <div class="hero-actions">
+                    <a href="login.html#register" class="btn btn-primary btn-large">
+                        <i class="fas fa-arrow-right"></i>
+                        Get Started Free
+                    </a>
+                    <a href="#features" class="btn btn-glass btn-large">
+                        <i class="fas fa-play-circle"></i>
+                        See How It Works
+                    </a>
+                </div>
+                <div class="hero-trust">
+                    <div class="trust-avatars">
+                        <div class="trust-avatar" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">A</div>
+                        <div class="trust-avatar" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">R</div>
+                        <div class="trust-avatar" style="background: linear-gradient(135deg, #10b981, #14b8a6);">S</div>
+                        <div class="trust-avatar" style="background: linear-gradient(135deg, #f59e0b, #f97316);">K</div>
+                        <div class="trust-avatar" style="background: linear-gradient(135deg, #3b82f6, #6366f1);">M</div>
+                    </div>
+                    <p>Join <strong>2,500+</strong> students already collaborating</p>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card-stack">
+                    <div class="floating-card card-1">
+                        <div class="floating-card-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div>
+                            <h4>Web Dev Project</h4>
+                            <p>3 members • React, Node.js</p>
+                        </div>
+                    </div>
+                    <div class="floating-card card-2">
+                        <div class="floating-card-icon" style="background: linear-gradient(135deg, #10b981, #14b8a6);">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <h4>ML Research</h4>
+                            <p>4 members • Python, TensorFlow</p>
+                        </div>
+                    </div>
+                    <div class="floating-card card-3">
+                        <div class="floating-card-icon" style="background: linear-gradient(135deg, #f59e0b, #f97316);">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Mobile App</h4>
+                            <p>2 members • Flutter, Firebase</p>
+                        </div>
+                    </div>
+                    <div class="floating-card card-4">
+                        <div class="floating-card-icon" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div>
+                            <h4>UI/UX Design</h4>
+                            <p>2 members • Figma, Adobe XD</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Features</span>
+                <h2 class="section-title">Everything you need to <span class="gradient-text">collaborate effectively</span></h2>
+                <p class="section-subtitle">Powerful tools designed specifically for student teams to plan, build, and ship projects together.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Smart Team Matching</h3>
+                    <p>AI-powered algorithm matches you with teammates who complement your skills and align with your project goals.</p>
+                    <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #14b8a6);">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Project Management</h3>
+                    <p>Kanban boards, task tracking, and deadline management – everything to keep your team organized and productive.</p>
+                    <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b, #f97316);">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Real-time Chat</h3>
+                    <p>Built-in team chat with file sharing, code snippets, and threaded conversations to streamline communication.</p>
+                    <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Skill Analytics</h3>
+                    <p>Track your skill growth, view contribution stats, and build a portfolio that showcases your collaborative experience.</p>
+                    <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6, #6366f1);">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Role-Based Access</h3>
+                    <p>Define roles within your team with granular permissions for project leaders, members, and mentors.</p>
+                    <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #14b8a6, #06b6d4);">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Learning Hub</h3>
+                    <p>Access curated resources, tutorials, and mentorship programs to accelerate your learning and project development.</p>
+                    <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <div class="stats-bg-effects">
+            <div class="stats-orb stats-orb-1"></div>
+            <div class="stats-orb stats-orb-2"></div>
+        </div>
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Impact</span>
+                <h2 class="section-title">Trusted by students <span class="gradient-text">across 50+ colleges</span></h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="2500">0</div>
+                    <div class="stat-label">Active Students</div>
+                    <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="850">0</div>
+                    <div class="stat-label">Projects Completed</div>
+                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="620">0</div>
+                    <div class="stat-label">Teams Formed</div>
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="120">0</div>
+                    <div class="stat-label">Skills Available</div>
+                    <div class="stat-icon"><i class="fas fa-cogs"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Testimonials</span>
+                <h2 class="section-title">What students are <span class="gradient-text">saying about us</span></h2>
+                <p class="section-subtitle">Hear from students who transformed their academic experience with SkillSync.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"SkillSync helped me find the perfect teammates for my final year project. The skill matching is incredibly accurate – we built an award-winning app together!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">AP</div>
+                        <div>
+                            <h4>Arjun Patel</h4>
+                            <p>B.Tech CSE, IIT Bombay</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card featured">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"As a design student, finding developers was always a challenge. SkillSync bridged the gap perfectly. I've now worked on 5 cross-functional projects and landed my dream internship!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">SK</div>
+                        <div>
+                            <h4>Sneha Krishnan</h4>
+                            <p>B.Des, NID Ahmedabad</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The Kanban boards and real-time chat made managing our hackathon project so smooth. Our team went from strangers to winners in just 48 hours!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #10b981, #14b8a6);">RV</div>
+                        <div>
+                            <h4>Rahul Verma</h4>
+                            <p>B.Tech IT, VIT Vellore</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <div class="cta-bg-effects">
+                <div class="cta-orb cta-orb-1"></div>
+                <div class="cta-orb cta-orb-2"></div>
+            </div>
+            <div class="cta-content">
+                <h2>Ready to build something <span class="gradient-text">amazing</span>?</h2>
+                <p>Join thousands of students who are already collaborating, learning, and building the future together.</p>
+                <a href="login.html#register" class="btn btn-primary btn-large">
+                    <i class="fas fa-rocket"></i>
+                    Start Collaborating Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <span class="logo-text">Skill<span class="logo-highlight">Sync</span></span>
+                    </a>
+                    <p>Empowering student collaboration through intelligent team matching and project management tools.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="explore.html">Explore Projects</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Changelog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:support@skillsync.com"><i class="fas fa-envelope"></i> support@skillsync.com</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +91 98765 43210</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Bangalore, India</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SkillSync. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/landing.js"></script>
+</body>
+</html>
