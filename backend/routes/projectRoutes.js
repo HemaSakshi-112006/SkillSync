@@ -4,11 +4,17 @@ const router = express.Router();
 
 const authMiddleware = require("../middleware/authMiddleware");
 
-router.get("/", authMiddleware, (req, res) => {
-    res.json({
-        message: "Protected Route Accessed Successfully",
-        loggedInUser: req.user
-    });
-});
+const {
+    createProject,
+    getMyProjects,
+    updateProject
+} = require("../controllers/projectController");
+
+// Get My Projects
+router.get("/", authMiddleware, getMyProjects);
+
+// Create Project
+router.post("/", authMiddleware, createProject);
+router.put("/:id", authMiddleware, updateProject);
 
 module.exports = router;
