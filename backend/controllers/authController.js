@@ -39,7 +39,17 @@ const loginUser = async (req, res) => {
     });
 }
    console.log(user);
-    res.send("User Found");
+   const isPasswordCorrect = await bcrypt.compare(
+    password,
+    user.password
+);
+console.log(isPasswordCorrect);
+if (!isPasswordCorrect) {
+    return res.status(401).json({
+        message: "Invalid Password"
+    });
+}
+    res.send("Login Successful");
 };
 module.exports = {
     registerUser,
