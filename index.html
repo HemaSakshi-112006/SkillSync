@@ -3,44 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SkillSync – Find teammates, build projects, and learn together. The ultimate student collaboration and project hub.">
-    <title>SkillSync – Student Collaboration & Project Hub</title>
+    <meta name="description" content="SkillSync – An all-in-one project management platform for students. Organize ideas, manage projects, collaborate with teammates, and build your portfolio.">
+    <title>SkillSync – Plan. Build. Collaborate. Showcase.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">
+            <a href="index.html" class="nav-logo" id="nav-logo">
                 <div class="logo-icon">
-                    <i class="fas fa-sync-alt"></i>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
                 </div>
                 <span class="logo-text">Skill<span class="logo-highlight">Sync</span></span>
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#features">Features</a></li>
-                <li><a href="#stats">Stats</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#workflow">Workflow</a></li>
+                <li><a href="#comparison">Why SkillSync</a></li>
+                <li><a href="#" class="nav-coming-soon">Pricing <span class="soon-badge">Soon</span></a></li>
             </ul>
-            <div class="nav-actions">
-                <a href="login.html" class="btn btn-ghost">Login</a>
-                <a href="login.html#register" class="btn btn-primary">Register</a>
+            <div class="nav-actions" id="navActions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="login.html" class="btn btn-ghost" id="nav-login">Login</a>
+                <a href="login.html#register" class="btn btn-primary" id="nav-get-started">Get Started</a>
             </div>
             <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="hero-bg-effects">
             <div class="hero-orb hero-orb-1"></div>
             <div class="hero-orb hero-orb-2"></div>
@@ -48,303 +53,446 @@
             <div class="hero-grid-pattern"></div>
         </div>
         <div class="hero-container">
-            <div class="hero-content">
+            <div class="hero-content reveal-section">
                 <div class="hero-badge">
                     <i class="fas fa-rocket"></i>
-                    <span>The Future of Student Collaboration</span>
+                    <span>Built for students who build things</span>
                 </div>
                 <h1 class="hero-title">
-                    Find teammates.<br>
-                    <span class="gradient-text">Build projects.</span><br>
-                    Learn together.
+                    Plan.<br>
+                    <span class="gradient-text">Build.</span><br>
+                    Collaborate.<br>
+                    <span class="gradient-text-alt">Showcase.</span>
                 </h1>
                 <p class="hero-subtitle">
-                    SkillSync connects students with complementary skills to form powerful teams, 
-                    manage projects efficiently, and build real-world experience together.
+                    SkillSync is an all-in-one project management platform designed for students to organize ideas, manage projects, collaborate with teammates, track progress, and build an impressive portfolio.
                 </p>
                 <div class="hero-actions">
-                    <a href="login.html#register" class="btn btn-primary btn-large">
+                    <a href="login.html#register" class="btn btn-primary btn-large" id="hero-cta-start">
+                        Start Building
                         <i class="fas fa-arrow-right"></i>
-                        Get Started Free
                     </a>
-                    <a href="#features" class="btn btn-glass btn-large">
+                    <a href="#workflow" class="btn btn-glass btn-large" id="hero-cta-demo">
                         <i class="fas fa-play-circle"></i>
-                        See How It Works
+                        Watch Demo
                     </a>
-                </div>
-                <div class="hero-trust">
-                    <div class="trust-avatars">
-                        <div class="trust-avatar" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">A</div>
-                        <div class="trust-avatar" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">R</div>
-                        <div class="trust-avatar" style="background: linear-gradient(135deg, #10b981, #14b8a6);">S</div>
-                        <div class="trust-avatar" style="background: linear-gradient(135deg, #f59e0b, #f97316);">K</div>
-                        <div class="trust-avatar" style="background: linear-gradient(135deg, #3b82f6, #6366f1);">M</div>
-                    </div>
-                    <p>Join <strong>2,500+</strong> students already collaborating</p>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="hero-card-stack">
-                    <div class="floating-card card-1">
-                        <div class="floating-card-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
-                            <i class="fas fa-code"></i>
+            <div class="hero-visual reveal-section">
+                <div class="hero-dashboard-mock">
+                    <div class="mock-titlebar">
+                        <div class="mock-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
                         </div>
-                        <div>
-                            <h4>Web Dev Project</h4>
-                            <p>3 members • React, Node.js</p>
-                        </div>
+                        <span class="mock-title">SkillSync Dashboard</span>
                     </div>
-                    <div class="floating-card card-2">
-                        <div class="floating-card-icon" style="background: linear-gradient(135deg, #10b981, #14b8a6);">
-                            <i class="fas fa-brain"></i>
+                    <div class="mock-body">
+                        <div class="mock-sidebar">
+                            <div class="mock-sidebar-item active"><i class="fas fa-th-large"></i> Dashboard</div>
+                            <div class="mock-sidebar-item"><i class="fas fa-folder"></i> Projects</div>
+                            <div class="mock-sidebar-item"><i class="fas fa-lightbulb"></i> Ideas</div>
+                            <div class="mock-sidebar-item"><i class="fas fa-check-square"></i> Tasks</div>
+                            <div class="mock-sidebar-item"><i class="fas fa-users"></i> Team</div>
                         </div>
-                        <div>
-                            <h4>ML Research</h4>
-                            <p>4 members • Python, TensorFlow</p>
-                        </div>
-                    </div>
-                    <div class="floating-card card-3">
-                        <div class="floating-card-icon" style="background: linear-gradient(135deg, #f59e0b, #f97316);">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Mobile App</h4>
-                            <p>2 members • Flutter, Firebase</p>
-                        </div>
-                    </div>
-                    <div class="floating-card card-4">
-                        <div class="floating-card-icon" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <div>
-                            <h4>UI/UX Design</h4>
-                            <p>2 members • Figma, Adobe XD</p>
+                        <div class="mock-main">
+                            <div class="mock-projects-label">Projects</div>
+                            <div class="mock-project-list">
+                                <div class="mock-project-item">
+                                    <span class="mock-proj-dot" style="background:#6366f1"></span>
+                                    <span>SkillSync</span>
+                                    <span class="mock-proj-tag">Active</span>
+                                </div>
+                                <div class="mock-project-item">
+                                    <span class="mock-proj-dot" style="background:#10b981"></span>
+                                    <span>AI Chatbot</span>
+                                    <span class="mock-proj-tag">Active</span>
+                                </div>
+                                <div class="mock-project-item">
+                                    <span class="mock-proj-dot" style="background:#f59e0b"></span>
+                                    <span>Pet Clinic</span>
+                                    <span class="mock-proj-tag done">Done</span>
+                                </div>
+                                <div class="mock-project-item">
+                                    <span class="mock-proj-dot" style="background:#ec4899"></span>
+                                    <span>Plant Disease Detection</span>
+                                    <span class="mock-proj-tag">Active</span>
+                                </div>
+                            </div>
+                            <div class="mock-stats-row">
+                                <div class="mock-stat-box">
+                                    <div class="mock-stat-label">Progress</div>
+                                    <div class="mock-progress-bar"><div class="mock-progress-fill"></div></div>
+                                </div>
+                                <div class="mock-stat-box">
+                                    <div class="mock-stat-label">Tasks</div>
+                                    <div class="mock-stat-value">10 / 15</div>
+                                </div>
+                                <div class="mock-stat-box">
+                                    <div class="mock-stat-label">Members</div>
+                                    <div class="mock-avatars">
+                                        <span class="m-av" style="background:#6366f1">A</span>
+                                        <span class="m-av" style="background:#ec4899">S</span>
+                                        <span class="m-av" style="background:#10b981">R</span>
+                                        <span class="m-av" style="background:#f59e0b">K</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Trusted By / Built For -->
+    <section class="trusted-by reveal-section" id="trusted-by">
+        <div class="section-container">
+            <div class="trusted-label">Perfect For</div>
+            <div class="trusted-items">
+                <div class="trusted-item"><i class="fas fa-graduation-cap"></i> College Projects</div>
+                <div class="trusted-divider"></div>
+                <div class="trusted-item"><i class="fas fa-code"></i> Hackathons</div>
+                <div class="trusted-divider"></div>
+                <div class="trusted-item"><i class="fas fa-rocket"></i> Startup Teams</div>
+                <div class="trusted-divider"></div>
+                <div class="trusted-item"><i class="fas fa-users"></i> Student Communities</div>
+            </div>
+        </div>
+    </section>
+
+
 
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal-section">
                 <span class="section-badge">Features</span>
-                <h2 class="section-title">Everything you need to <span class="gradient-text">collaborate effectively</span></h2>
-                <p class="section-subtitle">Powerful tools designed specifically for student teams to plan, build, and ship projects together.</p>
+                <h2 class="section-title">Everything you need to <span class="gradient-text">build and ship</span></h2>
+                <p class="section-subtitle">Powerful tools designed specifically for student teams to plan, build, and showcase projects together.</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Smart Team Matching</h3>
-                    <p>AI-powered algorithm matches you with teammates who complement your skills and align with your project goals.</p>
-                    <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #14b8a6);">
-                        <i class="fas fa-project-diagram"></i>
+                <div class="feature-card reveal-section" id="feature-project-mgmt">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #4F46E5, #7C3AED);">
+                        <i class="fas fa-folder-open"></i>
                     </div>
                     <h3>Project Management</h3>
-                    <p>Kanban boards, task tracking, and deadline management – everything to keep your team organized and productive.</p>
-                    <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                    <p>Create and organize academic and personal projects with ease.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card reveal-section" id="feature-idea-hub">
                     <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b, #f97316);">
-                        <i class="fas fa-comments"></i>
+                        <i class="fas fa-lightbulb"></i>
                     </div>
-                    <h3>Real-time Chat</h3>
-                    <p>Built-in team chat with file sharing, code snippets, and threaded conversations to streamline communication.</p>
-                    <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                    <h3>Idea Hub</h3>
+                    <p>Capture project ideas before converting them into tasks.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card reveal-section" id="feature-task-mgmt">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #14b8a6);">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Task Management</h3>
+                    <p>Break projects into smaller tasks and track progress efficiently.</p>
+                </div>
+                <div class="feature-card reveal-section" id="feature-collaboration">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6, #6366f1);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Team Collaboration</h3>
+                    <p>Invite teammates, assign work, and collaborate in real time.</p>
+                </div>
+                <div class="feature-card reveal-section" id="feature-ai">
                     <div class="feature-icon" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Assistant</h3>
+                    <p>Generate project ideas, documentation, and task suggestions using AI.</p>
+                </div>
+                <div class="feature-card reveal-section" id="feature-portfolio">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #06b6d4, #14b8a6);">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Skill Analytics</h3>
-                    <p>Track your skill growth, view contribution stats, and build a portfolio that showcases your collaborative experience.</p>
-                    <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6, #6366f1);">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Role-Based Access</h3>
-                    <p>Define roles within your team with granular permissions for project leaders, members, and mentors.</p>
-                    <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" style="background: linear-gradient(135deg, #14b8a6, #06b6d4);">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Learning Hub</h3>
-                    <p>Access curated resources, tutorials, and mentorship programs to accelerate your learning and project development.</p>
-                    <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                    <h3>Portfolio Builder</h3>
+                    <p>Transform completed projects into a professional portfolio.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Why Students Choose SkillSync Section -->
+    <section class="why-choose" id="why-choose">
+        <div class="section-container">
+            <div class="section-header reveal-section">
+                <span class="section-badge">Why Choose SkillSync?</span>
+                <h2 class="section-title">Why Students Choose <span class="gradient-text">SkillSync</span></h2>
+                <p class="section-subtitle">Students spend more time switching between apps than building projects. SkillSync brings everything together in one workspace so your team can focus on creating, not managing.</p>
+            </div>
+            
+            <div class="why-cards-grid reveal-section">
+                <div class="why-card">
+                    <div class="why-card-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Everything in One Place</h3>
+                    <p>No more switching between WhatsApp, Trello, Google Docs, GitHub and Notes. Manage your entire project from one dashboard.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-card-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>From Idea to Product</h3>
+                    <p>Don't just manage tasks. Capture ideas, plan features, assign tasks, track progress, and showcase the final project.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-card-icon"><i class="fas fa-users"></i></div>
+                    <h3>Built for Student Teams</h3>
+                    <p>Designed specifically for college projects, hackathons, capstone projects, and startup teams. No unnecessary enterprise features.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-card-icon"><i class="fas fa-robot"></i></div>
+                    <h3>AI Assisted Productivity</h3>
+                    <p>Generate ideas, task descriptions, documentation, meeting summaries, and project plans using AI assistance.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-card-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>Build Your Portfolio</h3>
+                    <p>Every completed project becomes part of your professional portfolio. Show recruiters what you've actually built.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-card-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Learn While Building</h3>
+                    <p>Track progress, improve teamwork, learn project management, and gain real-world experience while working on actual projects.</p>
+                </div>
+            </div>
+
+            <div class="why-big-statement reveal-section">
+                <div class="statement-icon">✨</div>
+                <h3 class="big-statement-title">SkillSync isn't just another project management tool.</h3>
+                <h3 class="big-statement-highlight">It's a complete student development platform.</h3>
+                <p class="big-statement-sub">🌱 From your first idea to your first internship 💼</p>
+            </div>
+
+            <div class="problems-vs-solutions reveal-section">
+                <h3 class="pvs-title">Problems Students Face</h3>
+                <div class="pvs-grid">
+                    <div class="pvs-col pvs-bad">
+                        <ul>
+                            <li><span class="x-mark">✕</span> Lost project ideas</li>
+                            <li><span class="x-mark">✕</span> Files everywhere</li>
+                            <li><span class="x-mark">✕</span> Tasks forgotten</li>
+                            <li><span class="x-mark">✕</span> No teamwork</li>
+                            <li><span class="x-mark">✕</span> No portfolio</li>
+                            <li><span class="x-mark">✕</span> Poor communication</li>
+                            <li><span class="x-mark">✕</span> Last-minute submissions</li>
+                        </ul>
+                    </div>
+                    <div class="pvs-col pvs-good">
+                        <ul>
+                            <li><span class="check-mark">✓</span> Ideas organized</li>
+                            <li><span class="check-mark">✓</span> Projects centralized</li>
+                            <li><span class="check-mark">✓</span> Tasks tracked</li>
+                            <li><span class="check-mark">✓</span> Real-time collaboration</li>
+                            <li><span class="check-mark">✓</span> Portfolio generated</li>
+                            <li><span class="check-mark">✓</span> Progress monitoring</li>
+                            <li><span class="check-mark">✓</span> Everything on schedule</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="why-final-box reveal-section">
+                <p><strong>SkillSync is not just where you manage projects.</strong></p>
+                <p>It's where students turn ideas into real products and real experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why We Built SkillSync Section -->
+    <section class="our-story reveal-section" id="our-story">
+        <div class="section-container">
+            <div class="story-container">
+                <span class="section-badge">👋 Our Story</span>
+                <h2>Why We Built SkillSync</h2>
+                <div class="story-content">
+                    <p class="story-lead">Every semester, students struggle with:</p>
+                    <ul class="story-list">
+                        <li><span class="story-emoji">🤝</span> Finding teammates</li>
+                        <li><span class="story-emoji">⏰</span> Managing deadlines</li>
+                        <li><span class="story-emoji">📁</span> Organizing files</li>
+                        <li><span class="story-emoji">📈</span> Tracking progress</li>
+                        <li><span class="story-emoji">🏆</span> Showcasing completed work</li>
+                    </ul>
+                    <div class="story-conclusion">
+                        <p>We experienced the same problems. 😫</p>
+                        <p class="conclusion-highlight">That's why we built SkillSync. 💡</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section class="workflow" id="workflow">
+        <div class="section-container">
+            <div class="section-header reveal-section">
+                <span class="section-badge">How It Works</span>
+                <h2 class="section-title">From idea to <span class="gradient-text">portfolio</span> in 6 steps</h2>
+            </div>
+            <div class="workflow-steps reveal-section">
+                <div class="workflow-step" id="step-1">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+                    <h4>Create Account</h4>
+                    <p>Sign up in seconds</p>
+                </div>
+                <div class="workflow-connector"><div class="connector-line"></div></div>
+                <div class="workflow-step" id="step-2">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><i class="fas fa-folder-plus"></i></div>
+                    <h4>Create Project</h4>
+                    <p>Define scope & goals</p>
+                </div>
+                <div class="workflow-connector"><div class="connector-line"></div></div>
+                <div class="workflow-step" id="step-3">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><i class="fas fa-user-friends"></i></div>
+                    <h4>Invite Team</h4>
+                    <p>Add collaborators</p>
+                </div>
+                <div class="workflow-connector"><div class="connector-line"></div></div>
+                <div class="workflow-step" id="step-4">
+                    <div class="step-number">4</div>
+                    <div class="step-icon"><i class="fas fa-tasks"></i></div>
+                    <h4>Manage Tasks</h4>
+                    <p>Track & assign work</p>
+                </div>
+                <div class="workflow-connector"><div class="connector-line"></div></div>
+                <div class="workflow-step" id="step-5">
+                    <div class="step-number">5</div>
+                    <div class="step-icon"><i class="fas fa-flag-checkered"></i></div>
+                    <h4>Complete Project</h4>
+                    <p>Ship & celebrate</p>
+                </div>
+                <div class="workflow-connector"><div class="connector-line"></div></div>
+                <div class="workflow-step" id="step-6">
+                    <div class="step-number">6</div>
+                    <div class="step-icon"><i class="fas fa-briefcase"></i></div>
+                    <h4>Build Portfolio</h4>
+                    <p>Showcase your work</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats / Highlights Section -->
     <section class="stats" id="stats">
-        <div class="stats-bg-effects">
-            <div class="stats-orb stats-orb-1"></div>
-            <div class="stats-orb stats-orb-2"></div>
-        </div>
         <div class="section-container">
-            <div class="section-header">
-                <span class="section-badge">Impact</span>
-                <h2 class="section-title">Trusted by students <span class="gradient-text">across 50+ colleges</span></h2>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number" data-target="2500">0</div>
-                    <div class="stat-label">Active Students</div>
-                    <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+            <div class="stats-grid reveal-section">
+                <div class="stat-card" id="stat-student">
+                    <div class="stat-icon-big"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="stat-value">Student Focused</div>
+                    <p>Built specifically for academic projects and student teams</p>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-target="850">0</div>
-                    <div class="stat-label">Projects Completed</div>
-                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                <div class="stat-card" id="stat-free">
+                    <div class="stat-icon-big"><i class="fas fa-heart"></i></div>
+                    <div class="stat-value">100% Free</div>
+                    <p>No hidden costs, no premium tiers, free for every student</p>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-target="620">0</div>
-                    <div class="stat-label">Teams Formed</div>
-                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-card" id="stat-ai">
+                    <div class="stat-icon-big"><i class="fas fa-robot"></i></div>
+                    <div class="stat-value">AI Powered</div>
+                    <p>Smart suggestions for ideas, tasks, and documentation</p>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-target="120">0</div>
-                    <div class="stat-label">Skills Available</div>
-                    <div class="stat-icon"><i class="fas fa-cogs"></i></div>
+                <div class="stat-card" id="stat-open">
+                    <div class="stat-icon-big"><i class="fas fa-code-branch"></i></div>
+                    <div class="stat-value">Open Source</div>
+                    <p>Transparent, community-driven, built by students for students</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
+    <!-- Launching Soon / Early Access -->
+    <section class="early-access reveal-section" id="early-access">
         <div class="section-container">
-            <div class="section-header">
-                <span class="section-badge">Testimonials</span>
-                <h2 class="section-title">What students are <span class="gradient-text">saying about us</span></h2>
-                <p class="section-subtitle">Hear from students who transformed their academic experience with SkillSync.</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"SkillSync helped me find the perfect teammates for my final year project. The skill matching is incredibly accurate – we built an award-winning app together!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">AP</div>
-                        <div>
-                            <h4>Arjun Patel</h4>
-                            <p>B.Tech CSE, IIT Bombay</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card featured">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"As a design student, finding developers was always a challenge. SkillSync bridged the gap perfectly. I've now worked on 5 cross-functional projects and landed my dream internship!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">SK</div>
-                        <div>
-                            <h4>Sneha Krishnan</h4>
-                            <p>B.Des, NID Ahmedabad</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"The Kanban boards and real-time chat made managing our hackathon project so smooth. Our team went from strangers to winners in just 48 hours!"</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #10b981, #14b8a6);">RV</div>
-                        <div>
-                            <h4>Rahul Verma</h4>
-                            <p>B.Tech IT, VIT Vellore</p>
-                        </div>
-                    </div>
+            <div class="early-access-card">
+                <div class="early-access-content">
+                    <div class="launch-emoji">🚀</div>
+                    <h2>Launching Soon</h2>
+                    <p>Join early and become one of the first SkillSync users. Be part of something built for students, by students.</p>
+                    <a href="login.html#register" class="btn btn-primary btn-large" id="early-access-cta">
+                        Join Early Access
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta">
+    <section class="cta reveal-section" id="cta">
         <div class="cta-container">
             <div class="cta-bg-effects">
                 <div class="cta-orb cta-orb-1"></div>
                 <div class="cta-orb cta-orb-2"></div>
             </div>
             <div class="cta-content">
-                <h2>Ready to build something <span class="gradient-text">amazing</span>?</h2>
-                <p>Join thousands of students who are already collaborating, learning, and building the future together.</p>
-                <a href="login.html#register" class="btn btn-primary btn-large">
-                    <i class="fas fa-rocket"></i>
-                    Start Collaborating Now
+                <h2>Ready to build your next <span class="gradient-text">project?</span></h2>
+                <p>Join SkillSync today.</p>
+                <a href="login.html#register" class="btn btn-primary btn-large" id="cta-start">
+                    Start Building
+                    <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer" id="contact">
+    <footer class="footer" id="footer">
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="nav-logo">
                         <div class="logo-icon">
-                            <i class="fas fa-sync-alt"></i>
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                            </svg>
                         </div>
                         <span class="logo-text">Skill<span class="logo-highlight">Sync</span></span>
                     </a>
-                    <p>Empowering student collaboration through intelligent team matching and project management tools.</p>
+                    <p>An all-in-one project management platform designed for students to organize, collaborate, and showcase their work.</p>
                     <div class="footer-socials">
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
-                    <h4>Product</h4>
+                    <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#features">Features</a></li>
-                        <li><a href="explore.html">Explore Projects</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Changelog</a></li>
+                        <li><a href="#workflow">Workflow</a></li>
+                        <li><a href="#comparison">Why SkillSync</a></li>
+                        <li><a href="#">Pricing (Coming Soon)</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h4>Resources</h4>
+                    <h4>Legal</h4>
                     <ul>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">API Reference</a></li>
-                        <li><a href="#">Tutorials</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>Contact</h4>
                     <ul>
                         <li><a href="mailto:support@skillsync.com"><i class="fas fa-envelope"></i> support@skillsync.com</a></li>
-                        <li><a href="#"><i class="fas fa-phone"></i> +91 98765 43210</a></li>
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Bangalore, India</a></li>
+                        <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 SkillSync. All rights reserved.</p>
                 <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Cookie Policy</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
                 </div>
             </div>
         </div>

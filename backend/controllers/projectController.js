@@ -48,8 +48,29 @@ const updateProject = async (req, res) => {
         project: updatedProject
     });
 };
+const deleteProject = async (req, res) => {
+
+    const { id } = req.params;
+
+    const deletedProject = await Project.findOneAndDelete({
+        _id: id,
+        owner: req.user.userId
+    });
+
+    if (!deletedProject) {
+        return res.status(404).json({
+            message: "Project Not Found"
+        });
+    }
+
+    res.status(200).json({
+        message: "Project Deleted Successfully"
+    });
+
+};
 module.exports = {
     createProject,
     getMyProjects,
-    updateProject
+    updateProject,
+    deleteProject
 };
