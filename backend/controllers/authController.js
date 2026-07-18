@@ -23,12 +23,25 @@ const newUser = await User.create({
 });
 console.log(hashedPassword);
     console.log("requestBody:", req.body);
-    
+
     res.status(201).json({
     message: "User registered successfully",
     user: newUser
 });
 };
+const loginUser = async (req, res) => {
+     const { email, password } = req.body;
+      console.log("Login Request:", req.body);
+     const user = await User.findOne({ email });
+     if (!user) {
+    return res.status(404).json({
+        message: "User not found"
+    });
+}
+   console.log(user);
+    res.send("User Found");
+};
 module.exports = {
-    registerUser
+    registerUser,
+    loginUser
 };
