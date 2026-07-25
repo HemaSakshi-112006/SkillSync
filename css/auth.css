@@ -50,8 +50,14 @@ a { text-decoration: none; color: inherit; }
     display: flex; align-items: center; justify-content: center;
     color: #a78bfa; font-size: 1rem;
 }
-.branding-feature h4 { color: #fff; font-size: 0.9rem; font-weight: 600; }
-.branding-feature p { color: #8892a6; font-size: 0.8rem; }
+.branding-feature h4 { color: #fff; font-size: 0.9rem; font-weight: 600; margin: 0; }
+.branding-feature p { color: #8892a6; font-size: 0.8rem; margin: 0; }
+
+.why-students-love { margin-top: 40px; }
+.love-title { color: #c8d6e5; font-weight: 600; font-size: 0.95rem; margin-bottom: 16px; }
+.love-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.love-list li { display: flex; align-items: center; gap: 10px; color: #8892a6; font-size: 0.85rem; }
+.love-list li i { color: #a78bfa; font-size: 1rem; }
 
 /* ===== FORMS PANEL ===== */
 .auth-forms-panel {
@@ -164,11 +170,20 @@ a { text-decoration: none; color: inherit; }
     padding: 12px; border-radius: 12px; font-family: 'Poppins', sans-serif;
     font-size: 0.85rem; font-weight: 500; cursor: pointer;
     background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-    color: #c8d6e5; transition: all 0.3s;
+    color: #c8d6e5; transition: all 0.3s; position: relative;
 }
-.social-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
+.social-btn:hover:not(.social-disabled) { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
+.social-btn.social-disabled { opacity: 0.6; cursor: not-allowed; }
+.coming-soon-badge {
+    position: absolute; top: -8px; right: -8px;
+    background: #ec4899; color: #fff; font-size: 0.6rem;
+    padding: 2px 6px; border-radius: 10px; font-weight: 600;
+}
+.security-note {
+    text-align: center; font-size: 0.75rem; color: #64748b; margin: 24px 0 12px 0;
+}
 .form-switch {
-    text-align: center; font-size: 0.85rem; color: #8892a6;
+    text-align: center; font-size: 0.85rem; color: #8892a6; margin-top: 10px;
 }
 .form-switch a { color: #a78bfa; font-weight: 600; transition: color 0.3s; }
 .form-switch a:hover { color: #c4b5fd; }
@@ -181,4 +196,86 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 480px) {
     .form-row { grid-template-columns: 1fr; }
     .social-login { grid-template-columns: 1fr; }
+}
+
+/* ===== THEME TOGGLE ===== */
+.theme-toggle {
+    position: absolute; top: 24px; right: 24px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    width: 44px; height: 44px; border-radius: 50%;
+    font-size: 1.2rem; cursor: pointer; color: #c8d6e5;
+    z-index: 100; display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s;
+}
+.theme-toggle:hover { background: rgba(255,255,255,0.1); color: #fff; }
+[data-theme="dark"] .theme-toggle .fa-moon { display: none; }
+:root:not([data-theme="dark"]) .theme-toggle .fa-sun { display: none; }
+
+/* ===== LIGHT MODE OVERRIDES ===== */
+:root:not([data-theme="dark"]) body {
+    background: #FFFCF9; color: #4B5563;
+}
+:root:not([data-theme="dark"]) .auth-branding {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+:root:not([data-theme="dark"]) .branding-grid {
+    background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
+}
+:root:not([data-theme="dark"]) .auth-forms-panel {
+    background: #FFFCF9;
+}
+:root:not([data-theme="dark"]) .branding-content h1,
+:root:not([data-theme="dark"]) .branding-feature h4,
+:root:not([data-theme="dark"]) .love-title,
+:root:not([data-theme="dark"]) .form-header h2,
+:root:not([data-theme="dark"]) .logo-text {
+    color: #1e293b;
+}
+:root:not([data-theme="dark"]) .branding-content > p,
+:root:not([data-theme="dark"]) .form-group label,
+:root:not([data-theme="dark"]) .branding-feature p,
+:root:not([data-theme="dark"]) .love-list li,
+:root:not([data-theme="dark"]) .file-upload p {
+    color: #475569;
+}
+:root:not([data-theme="dark"]) .input-wrapper {
+    background: #fff; border: 1px solid #e2e8f0;
+}
+:root:not([data-theme="dark"]) .input-wrapper input,
+:root:not([data-theme="dark"]) .input-wrapper select {
+    color: #1e293b;
+}
+:root:not([data-theme="dark"]) .input-wrapper select option {
+    background: #fff; color: #1e293b;
+}
+:root:not([data-theme="dark"]) .input-wrapper input::placeholder {
+    color: #94a3b8;
+}
+:root:not([data-theme="dark"]) .input-wrapper i {
+    color: #64748b;
+}
+:root:not([data-theme="dark"]) .social-btn {
+    background: #fff; border: 1px solid #e2e8f0; color: #475569;
+}
+:root:not([data-theme="dark"]) .social-btn:hover:not(.social-disabled) {
+    background: #f8fafc; border-color: #cbd5e1;
+}
+:root:not([data-theme="dark"]) .form-divider::before, 
+:root:not([data-theme="dark"]) .form-divider::after {
+    background: #e2e8f0;
+}
+:root:not([data-theme="dark"]) .file-upload {
+    background: #f8fafc; border-color: #cbd5e1;
+}
+:root:not([data-theme="dark"]) .theme-toggle {
+    background: #fff; border: 1px solid #e2e8f0; color: #475569; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+:root:not([data-theme="dark"]) .theme-toggle:hover {
+    background: #f8fafc; color: #1e293b;
+}
+:root:not([data-theme="dark"]) .checkbox-wrapper .checkmark {
+    background: #fff; border-color: #cbd5e1;
+}
+:root:not([data-theme="dark"]) .form-switch {
+    color: #475569;
 }

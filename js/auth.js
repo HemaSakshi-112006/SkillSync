@@ -1,3 +1,30 @@
+// ===== Theme Toggle (Dark/Light Mode) =====
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+    } else {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            // Default to dark if OS light? Landing defaults to light. Let's match landing.
+            // If we don't set 'dark', it will be light.
+        }
+    }
+
+    themeToggle.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        if (theme === 'dark') {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+}
+
 // ===== Toggle Login/Register =====
 function showRegister(e) {
     e.preventDefault();
