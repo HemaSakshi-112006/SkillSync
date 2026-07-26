@@ -56,11 +56,35 @@ function togglePassword(inputId, btn) {
     }
 }
 
-// ===== Form Handlers (Dummy) =====
-function handleLogin(e) {
+async function handleLogin(e) {
     e.preventDefault();
-    // Redirect to dashboard as dummy action
-    window.location.href = 'dashboard.html';
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+    try {
+        const response = await fetch(`${BASE_URL}/auth/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email,
+                password
+            })
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            alert(data.message);
+            return;
+        }
+        // Save JWT Token
+        localStorage.setItem("token", data.token);
+        alert("Login Successful!");
+        window.location.href = "dashboard.html";
+    }
+    catch (error) {
+        console.error(error);
+        alert("Server Error");
+    }
 }
 function handleRegister(e) {
     e.preventDefault();
