@@ -55,6 +55,10 @@ function togglePassword(inputId, btn) {
         icon.classList.replace('fa-eye-slash', 'fa-eye');
     }
 }
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 
 async function handleLogin(e) {
     e.preventDefault();
@@ -86,7 +90,46 @@ async function handleLogin(e) {
         alert("Server Error");
     }
 }
-function handleRegister(e) {
+async function handleRegister(e) {
     e.preventDefault();
-    window.location.href = 'dashboard.html';
+    const fullName = document.getElementById("regName").value;
+    const username = document.getElementById("regUsername").value;
+    const email = document.getElementById("regEmail").value;
+    const password = document.getElementById("regPassword").value;
+    const confirmPassword = document.getElementById("regConfirmPassword").value
+
+if (!isValidEmail(email)) {
+    alert("Please enter a valid email address.");
+    return;
+}
+    if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+    }
+    try {
+        const response = await fetch(`${BASE_URL}/auth/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fullName,
+                username,
+                email,
+                password
+            })
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            alert(data.message);
+            return;
+        }
+        alert("Registration Successful!");
+        document.getElementById("registerForm").classList.add("hidden");
+        document.getElementById("loginForm").classList.remove("hidden");
+    }
+    catch (error) {
+        console.error(error);
+        alert("Server Error");
+    }
 }
