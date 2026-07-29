@@ -62,7 +62,7 @@ function isValidEmail(email) {
 
 async function handleLogin(e) {
     e.preventDefault();
-    const email = document.getElementById("loginEmail").value;
+    const loginIdentifier = document.getElementById("loginIdentifier").value.trim();
     const password = document.getElementById("loginPassword").value;
     try {
         const response = await fetch(`${BASE_URL}/auth/login`, {
@@ -71,7 +71,7 @@ async function handleLogin(e) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                email,
+                loginIdentifier,
                 password
             })
         });

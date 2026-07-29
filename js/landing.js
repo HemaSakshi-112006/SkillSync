@@ -1,3 +1,5 @@
+console.log("Landing Page JS Loaded");
+
 // ===== Theme Toggle (Dark/Light Mode) =====
 const themeToggle = document.getElementById('themeToggle');
 if (themeToggle) {
@@ -80,3 +82,70 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+const token = localStorage.getItem("token");
+if (token) {
+    const authActions = document.getElementById("authActions");
+    if (authActions) {
+        authActions.innerHTML = `
+            <a href="dashboard.html" class="btn btn-ghost" style="margin-right: 8px;">Dashboard</a>
+            <div class="profile-dropdown-container">
+                <div class="user-menu" id="userMenuBtn">
+                    <div class="user-avatar">HS</div>
+                    <i class="fas fa-chevron-down dropdown-icon" style="color:var(--color-text)"></i>
+                </div>
+                
+                <div class="profile-dropdown-menu" id="profileDropdown" style="text-align: left;">
+                    <div class="dropdown-header">
+                        <div class="dropdown-avatar">HS</div>
+                        <div class="dropdown-user-details">
+                            <span class="dropdown-name" style="color:#fff;">Hema Sakshi</span>
+                            <span class="dropdown-username">sakshi123</span>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="dashboard.html" class="dropdown-item"><i class="fas fa-th-large"></i> Dashboard</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        `;
+
+        // Profile Dropdown logic
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const profileDropdown = document.getElementById('profileDropdown');
+
+        if (userMenuBtn && profileDropdown) {
+            userMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                userMenuBtn.classList.toggle('active');
+                profileDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!profileDropdown.contains(e.target) && !userMenuBtn.contains(e.target)) {
+                    userMenuBtn.classList.remove('active');
+                    profileDropdown.classList.remove('show');
+                }
+            });
+        }
+        
+        // Logout logic
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('token');
+                window.location.reload();
+            });
+        }
+    }
+    
+    // Also update the main Call To Action button
+    const ctaStart = document.getElementById('hero-cta-start');
+    if (ctaStart) {
+        ctaStart.href = "dashboard.html";
+        ctaStart.innerHTML = `Go to Dashboard <i class="fas fa-arrow-right"></i>`;
+    }
+}

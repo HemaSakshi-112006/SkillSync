@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
@@ -25,18 +27,20 @@
                 <span class="logo-text">Skill<span class="logo-highlight">Sync</span></span>
             </a>
             <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#workflow">Workflow</a></li>
-                <li><a href="#comparison">Why SkillSync</a></li>
-                <li><a href="#" class="nav-coming-soon">Pricing <span class="soon-badge">Soon</span></a></li>
+                <li><a href="#workflow">How It Works</a></li>
+                <li><a href="#about">About</a></li>
             </ul>
             <div class="nav-actions" id="navActions">
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <i class="fas fa-sun"></i>
                     <i class="fas fa-moon"></i>
                 </button>
-                <a href="login.html" class="btn btn-ghost" id="nav-login">Login</a>
-                <a href="login.html#register" class="btn btn-primary" id="nav-get-started">Get Started</a>
+                <div id="authActions" style="display: flex; gap: 16px; align-items: center;">
+                    <a href="login.html" class="btn btn-ghost" id="nav-login">Login</a>
+                    <a href="login.html#register" class="btn btn-primary" id="nav-get-started">Get Started</a>
+                </div>
             </div>
             <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
                 <span></span><span></span><span></span>

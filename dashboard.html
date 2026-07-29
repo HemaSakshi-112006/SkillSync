@@ -8,59 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
-    <div class="app-layout">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <a href="index.html" class="sidebar-logo">
-                    <div class="logo-icon"><i class="fas fa-sync-alt"></i></div>
-                    <span class="logo-text">Skill<span class="logo-highlight">Sync</span></span>
-                </a>
-                <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
-            </div>
-            <nav class="sidebar-nav">
-                <span class="nav-label">Main</span>
-                <a href="dashboard.html" class="nav-item active"><i class="fas fa-th-large"></i> Dashboard</a>
-                <a href="explore.html" class="nav-item"><i class="fas fa-compass"></i> Explore Projects</a>
-                <a href="workspace.html" class="nav-item"><i class="fas fa-briefcase"></i> My Workspace</a>
-                <span class="nav-label">Collaborate</span>
-                <a href="#" class="nav-item"><i class="fas fa-users"></i> My Teams</a>
-                <a href="#" class="nav-item"><i class="fas fa-comments"></i> Messages <span class="nav-badge">3</span></a>
-                <a href="#" class="nav-item"><i class="fas fa-bell"></i> Notifications <span class="nav-badge">5</span></a>
-                <span class="nav-label">Account</span>
-                <a href="#" class="nav-item"><i class="fas fa-user-circle"></i> Profile</a>
-                <a href="#" class="nav-item"><i class="fas fa-cog"></i> Settings</a>
-                <a href="index.html" class="nav-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
-            </nav>
-        </aside>
+    <div class="app-layout top-nav-layout">
+        <!-- Top Navbar Component -->
+        <app-navbar></app-navbar>
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Top Navbar -->
-            <header class="topbar">
-                <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-                <div class="search-bar">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search projects, teams, skills..." id="dashSearch">
-                </div>
-                <div class="topbar-actions">
-                    <button class="topbar-btn" id="notifBtn">
-                        <i class="fas fa-bell"></i>
-                        <span class="notif-dot"></span>
-                    </button>
-                    <div class="user-menu">
-                        <div class="user-avatar">AP</div>
-                        <div class="user-info">
-                            <span class="user-name">Arjun Patel</span>
-                            <span class="user-role">B.Tech CSE</span>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
             <!-- Dashboard Content -->
             <div class="dashboard-content">
                 <!-- Welcome Card -->
@@ -251,7 +208,7 @@
                 </div>
             </div>
         </main>
-    </div>
+    <script src="js/navbar.js"></script>
     <script src="js/dashboard.js"></script>
 </body>
 </html>
