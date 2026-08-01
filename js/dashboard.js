@@ -34,7 +34,7 @@ if (dashSearch) {
 // ===== Dynamic Welcome Name =====
 const welcomeName = document.getElementById('welcomeName');
 if (welcomeName) {
-    let firstName = 'Arjun'; // Fallback
+    let firstName = 'User'; // Fallback
     try {
         const userStr = localStorage.getItem('user');
         if (userStr) {

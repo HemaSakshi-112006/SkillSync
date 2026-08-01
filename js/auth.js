@@ -81,19 +81,24 @@ async function handleLogin(e) {
             return;
         }
         // Save JWT Token
-        localStorage.setItem("token", data.token);
-        if (data.user) {
-            localStorage.setItem("user", JSON.stringify(data.user));
-        } else {
-            // Provide a fallback in case data.user is not sent by backend
-            const userFallback = {
-                fullName: loginIdentifier.split('@')[0],
-                email: isValidEmail(loginIdentifier) ? loginIdentifier : loginIdentifier + "@example.com"
-            };
-            localStorage.setItem("user", JSON.stringify(userFallback));
-        }
-        alert("Login Successful!");
-        window.location.href = "dashboard.html";
+      const data = await response.json();
+
+if (!response.ok) {
+    alert(data.message);
+    return;
+}
+
+// Save JWT Token
+localStorage.setItem("token", data.token);
+// Save User Details
+localStorage.setItem("user", JSON.stringify(data.user));
+alert("Login Successful!");
+// Redirect
+if (data.user.isProfileCompleted) {
+    window.location.href = "dashboard.html";
+} else {
+    window.location.href = "onboarding.html";
+}
     }
     catch (error) {
         console.error(error);

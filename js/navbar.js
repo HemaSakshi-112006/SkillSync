@@ -8,8 +8,8 @@ class AppNavbar extends HTMLElement {
         const isActive = (path) => currentPath.includes(path) ? 'active' : '';
         const isDashboard = currentPath.endsWith('/') || isActive('dashboard.html');
 
-        let fullName = 'Hema Sakshi';
-        let email = 'Sakshi@123S@gmail.com';
+        let fullName = 'User';
+        let email = 'user@example.com';
         
         try {
             const userStr = localStorage.getItem('user');

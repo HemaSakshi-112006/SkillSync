@@ -86,20 +86,47 @@ const token = localStorage.getItem("token");
 if (token) {
     const authActions = document.getElementById("authActions");
     if (authActions) {
+        let fullName = 'User';
+        let email = 'user@example.com';
+        
+        try {
+            const userStr = localStorage.getItem('user');
+            if (userStr) {
+                const userObj = JSON.parse(userStr);
+                fullName = userObj.fullName || userObj.name || fullName;
+                email = userObj.email || userObj.username || email;
+            } else {
+                const token = localStorage.getItem('token');
+                if (token) {
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    fullName = payload.fullName || payload.name || fullName;
+                    email = payload.email || payload.username || email;
+                }
+            }
+        } catch (e) {
+            console.error('Error parsing user data:', e);
+        }
+
+        const getInitials = (name) => {
+            if (!name) return 'U';
+            return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+        };
+        const initials = getInitials(fullName);
+
         authActions.innerHTML = `
             <a href="dashboard.html" class="btn btn-ghost" style="margin-right: 8px;">Dashboard</a>
             <div class="profile-dropdown-container">
                 <div class="user-menu" id="userMenuBtn">
-                    <div class="user-avatar">HS</div>
+                    <div class="user-avatar">${initials}</div>
                     <i class="fas fa-chevron-down dropdown-icon" style="color:var(--color-text)"></i>
                 </div>
                 
                 <div class="profile-dropdown-menu" id="profileDropdown" style="text-align: left;">
                     <div class="dropdown-header">
-                        <div class="dropdown-avatar">HS</div>
+                        <div class="dropdown-avatar">${initials}</div>
                         <div class="dropdown-user-details">
-                            <span class="dropdown-name" style="color:#fff;">Hema Sakshi</span>
-                            <span class="dropdown-username">sakshi123</span>
+                            <span class="dropdown-name" style="color:#fff;">${fullName}</span>
+                            <span class="dropdown-username">${email}</span>
                         </div>
                     </div>
                     <div class="dropdown-divider"></div>

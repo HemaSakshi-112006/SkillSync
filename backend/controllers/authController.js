@@ -67,7 +67,14 @@ const token = jwt.sign(
 console.log(token);
   res.json({
     message: "Login Successful",
-    token
+    token,
+    user: {
+        id: user._id,
+        fullName: user.fullName,
+        username: user.username,
+        email: user.email,
+        isProfileCompleted: user.isProfileCompleted
+    }
 });
 };
 module.exports = {

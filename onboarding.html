@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillSync – Let's Get to Know You</title>
+<meta name="description" content="Set up your SkillSync profile to get personalised AI project, teammate and skill recommendations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/onboarding.css">
+</head>
+<body>
+<div class="onboarding-wrapper">
+
+  <!-- Logo -->
+  <div class="onboarding-logo">
+    <div class="ob-logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+    <span class="ob-logo-text">Skill<span>Sync</span></span>
+  </div>
+
+  <!-- Progress Bar (hidden on welcome/complete) -->
+  <div class="progress-container" id="progressContainer" style="display:none;">
+    <div class="progress-meta">
+      <span><strong id="stepLabel">Profile</strong></span>
+      <span id="stepCounter">Step 1 of 7</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="progress-steps">
+      <div class="progress-step-dot" title="Personal">1</div>
+      <div class="progress-step-dot" title="Academic">2</div>
+      <div class="progress-step-dot" title="Skills">3</div>
+      <div class="progress-step-dot" title="Interests">4</div>
+      <div class="progress-step-dot" title="Collaboration">5</div>
+      <div class="progress-step-dot" title="Portfolio">6</div>
+      <div class="progress-step-dot" title="AI Setup">7</div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       SCREEN 0 – WELCOME
+       ====================================================== -->
+  <div class="ob-card active" data-step="0">
+    <div class="ob-welcome">
+      <span class="ob-hero-emoji">👋</span>
+      <h1>Welcome to <span class="gradient-text">SkillSync</span>!</h1>
+      <p class="tagline">Let's personalise your workspace.<br>This will only take about <strong style="color:#fff">2 minutes</strong>.<br>The more we know about you, the better your project, teammate and AI recommendations become.</p>
+      <ul class="feature-bullets">
+        <li><i class="fas fa-robot"></i> AI-powered project & teammate recommendations</li>
+        <li><i class="fas fa-graduation-cap"></i> Personalised learning roadmaps</li>
+        <li><i class="fas fa-users"></i> Smart collaboration matching</li>
+        <li><i class="fas fa-chart-line"></i> Skill tracking & achievements</li>
+      </ul>
+      <button class="btn-ob-dashboard" id="btnGetStarted">Get Started <i class="fas fa-arrow-right"></i></button>
+      <p style="margin-top:16px;font-size:0.8rem;color:var(--text-muted)">Already set up? <a href="dashboard.html" style="color:#a78bfa">Go to Dashboard</a></p>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       STEP 1 – PERSONAL PROFILE
+       ====================================================== -->
+  <div class="ob-card" data-step="1">
+    <div class="ob-step-badge"><i class="fas fa-user"></i> Step 1 of 7</div>
+    <h2 class="ob-card-title">Your Personal Profile</h2>
+    <p class="ob-card-subtitle">Tell us who you are — this powers your SkillSync identity.</p>
+
+    <!-- Avatar -->
+    <div class="avatar-upload-row">
+      <div class="avatar-preview" id="avatarPreview">
+        <span id="avatarInitials">?</span>
+        <div class="avatar-overlay"><i class="fas fa-camera"></i></div>
+      </div>
+      <div class="avatar-info">
+        <button class="btn-avatar-upload" id="avatarUploadBtn"><i class="fas fa-upload"></i> Upload Photo</button>
+        <p>JPG, PNG or GIF &bull; Max 5 MB<br>A photo helps teammates recognise you.</p>
+        <input type="file" id="avatarFileInput" accept="image/*">
+      </div>
+    </div>
+
+    <div class="ob-form-grid">
+      <div class="ob-field">
+        <label class="ob-label" for="obFullName">Full Name <span style="color:#f43f5e">*</span></label>
+        <input class="ob-input" id="obFullName" type="text" placeholder="e.g. Hema Sakshi">
+      </div>
+      <div class="ob-field">
+        <label class="ob-label" for="obUsername">Username <span style="color:#f43f5e">*</span></label>
+        <input class="ob-input" id="obUsername" type="text" placeholder="e.g. hema_sakshi">
+      </div>
+      <div class="ob-field">
+        <label class="ob-label" for="obGender">Gender</label>
+        <select class="ob-select" id="obGender">
+          <option value="">Select gender</option>
+          <option>Male</option><option>Female</option><option>Other</option><option>Prefer not to say</option>
+        </select>
+      </div>
+      <div class="ob-field">
+        <label class="ob-label" for="obDOB">Date of Birth</label>
+        <input class="ob-input" id="obDOB" type="date">
+      </div>
+      <div class="ob-field">
+        <label class="ob-label" for="obPhone">Phone Number <span class="optional">(optional)</span></label>
+        <input class="ob-input" id="obPhone" type="tel" placeholder="+91 98765 43210">
+      </div>
+      <div class="ob-field">
+        <label class="ob-label" for="obLocation">Location <span class="optional">(optional)</span></label>
+        <input class="ob-input" id="obLocation" type="text" placeholder="e.g. Bengaluru, Karnataka">
+      </div>
+      <div class="ob-field full">
+        <label class="ob-label" for="obBio">Bio <span class="optional">(optional)</span></label>
+        <textarea class="ob-textarea" id="obBio" placeholder="I'm an AI enthusiast who enjoys building web applications and computer vision projects..."></textarea>
+      </div>
+    </div>
+
+    <div class="ob-nav">
+      <span></span>
+      <button class="btn-ob btn-ob-primary" data-action="next">Continue <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       STEP 2 – ACADEMIC PROFILE
+       ====================================================== -->
+  <div class="ob-card" data-step="2">
+    <div class="ob-step-badge"><i class="fas fa-graduation-cap"></i> Step 2 of 7</div>
+    <h2 class="ob-card-title">Academic Profile</h2>
+    <p class="ob-card-subtitle">Help us understand your academic journey to better match you with relevant projects and teammates.</p>
+
+    <div class="ob-form-grid">
+      <div class="ob-field full">
+        <label class="ob-label" for="obCollege">College / University</label>
+        <input class="ob-input" id="obCollege" type="text" placeholder="e.g. RV College of Engineering, Bengaluru">
+      </div>
+      <div class="ob-field">
+        <label class="ob-label" for="obDegree">Degree</label>
+        <select class="ob-select" id="obDegree">
+          <option value="">Select degree</option>
+          <option>B.E</option><option>B.Tech</option><option>M.Tech</option><option>MCA</option>
+          <option>BCA</option><option>BSc</option><option>MSc</option><option>MBA</option><option>PhD</option>
+        </select>
+      </div>
+      <div class="ob-field">
+        <label class="ob-label" for="obBranch">Branch / Specialisation</label>
+        <input class="ob-input" id="obBranch" type="text" placeholder="e.g. Artificial Intelligence & Data Science">
+      </div>
+      <div class="ob-field">
+        <label class="ob-label" for="obSemester">Current Semester</label>
+        <select class="ob-select" id="obSemester">
+          <option value="">Select semester</option>
+          <option>1</option><option>2</option><option>3</option><option>4</option>
+          <option>5</option><option>6</option><option>7</option><option>8</option>
+        </select>
+      </div>
+      <div class="ob-field">
+        <label class="ob-label" for="obSection">Section <span class="optional">(optional)</span></label>
+        <input class="ob-input" id="obSection" type="text" placeholder="e.g. A, B, C">
+      </div>
+      <div class="ob-field">
+        <label class="ob-label" for="obUSN">USN / Roll Number <span class="optional">(optional)</span></label>
+        <input class="ob-input" id="obUSN" type="text" placeholder="e.g. 1RV22AI045">
+      </div>
+      <div class="ob-field">
+        <label class="ob-label" for="obGradYear">Graduation Year</label>
+        <select class="ob-select" id="obGradYear">
+          <option value="">Select year</option>
+          <option>2025</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option>
+        </select>
+      </div>
+      <div class="ob-field">
+        <label class="ob-label" for="obCGPA">Current CGPA <span class="optional">(optional)</span></label>
+        <input class="ob-input" id="obCGPA" type="number" step="0.1" min="0" max="10" placeholder="e.g. 8.9">
+      </div>
+    </div>
+
+    <div class="ob-nav">
+      <button class="btn-ob btn-ob-secondary" data-action="back"><i class="fas fa-arrow-left"></i> Back</button>
+      <button class="btn-ob btn-ob-primary" data-action="next">Continue <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- Steps 3–7 and completion screen injected below -->
+  <!-- ======================================================
+       STEP 3 – SKILLS
+       ====================================================== -->
+  <div class="ob-card" data-step="3">
+    <div class="ob-step-badge"><i class="fas fa-code"></i> Step 3 of 7</div>
+    <h2 class="ob-card-title">Your Skills</h2>
+    <p class="ob-card-subtitle">Select every technology you know — this is the engine behind your project and teammate matches. Pick as many as you like.</p>
+
+    <div id="chips-programming">
+      <div class="ob-section-title">Programming Languages</div>
+      <div class="chips-grid">
+        <div class="chip" data-value="Python"><span class="chip-check"><i class="fas fa-check"></i></span>Python</div>
+        <div class="chip" data-value="Java"><span class="chip-check"><i class="fas fa-check"></i></span>Java</div>
+        <div class="chip" data-value="C++"><span class="chip-check"><i class="fas fa-check"></i></span>C++</div>
+        <div class="chip" data-value="C"><span class="chip-check"><i class="fas fa-check"></i></span>C</div>
+        <div class="chip" data-value="JavaScript"><span class="chip-check"><i class="fas fa-check"></i></span>JavaScript</div>
+        <div class="chip" data-value="TypeScript"><span class="chip-check"><i class="fas fa-check"></i></span>TypeScript</div>
+        <div class="chip" data-value="C#"><span class="chip-check"><i class="fas fa-check"></i></span>C#</div>
+        <div class="chip" data-value="PHP"><span class="chip-check"><i class="fas fa-check"></i></span>PHP</div>
+        <div class="chip" data-value="Go"><span class="chip-check"><i class="fas fa-check"></i></span>Go</div>
+        <div class="chip" data-value="Rust"><span class="chip-check"><i class="fas fa-check"></i></span>Rust</div>
+        <div class="chip" data-value="Kotlin"><span class="chip-check"><i class="fas fa-check"></i></span>Kotlin</div>
+        <div class="chip" data-value="Swift"><span class="chip-check"><i class="fas fa-check"></i></span>Swift</div>
+      </div>
+    </div>
+
+    <div id="chips-web">
+      <div class="ob-section-title">Web Development</div>
+      <div class="chips-grid">
+        <div class="chip" data-value="HTML"><span class="chip-check"><i class="fas fa-check"></i></span>HTML</div>
+        <div class="chip" data-value="CSS"><span class="chip-check"><i class="fas fa-check"></i></span>CSS</div>
+        <div class="chip" data-value="React"><span class="chip-check"><i class="fas fa-check"></i></span>React</div>
+        <div class="chip" data-value="Angular"><span class="chip-check"><i class="fas fa-check"></i></span>Angular</div>
+        <div class="chip" data-value="Vue"><span class="chip-check"><i class="fas fa-check"></i></span>Vue</div>
+        <div class="chip" data-value="Next.js"><span class="chip-check"><i class="fas fa-check"></i></span>Next.js</div>
+        <div class="chip" data-value="Node.js"><span class="chip-check"><i class="fas fa-check"></i></span>Node.js</div>
+        <div class="chip" data-value="Express"><span class="chip-check"><i class="fas fa-check"></i></span>Express</div>
+        <div class="chip" data-value="MongoDB"><span class="chip-check"><i class="fas fa-check"></i></span>MongoDB</div>
+        <div class="chip" data-value="MySQL"><span class="chip-check"><i class="fas fa-check"></i></span>MySQL</div>
+        <div class="chip" data-value="PostgreSQL"><span class="chip-check"><i class="fas fa-check"></i></span>PostgreSQL</div>
+        <div class="chip" data-value="GraphQL"><span class="chip-check"><i class="fas fa-check"></i></span>GraphQL</div>
+      </div>
+    </div>
+
+    <div id="chips-ai">
+      <div class="ob-section-title">AI / ML</div>
+      <div class="chips-grid">
+        <div class="chip" data-value="TensorFlow"><span class="chip-check"><i class="fas fa-check"></i></span>TensorFlow</div>
+        <div class="chip" data-value="PyTorch"><span class="chip-check"><i class="fas fa-check"></i></span>PyTorch</div>
+        <div class="chip" data-value="OpenCV"><span class="chip-check"><i class="fas fa-check"></i></span>OpenCV</div>
+        <div class="chip" data-value="Scikit-Learn"><span class="chip-check"><i class="fas fa-check"></i></span>Scikit-Learn</div>
+        <div class="chip" data-value="NLP"><span class="chip-check"><i class="fas fa-check"></i></span>NLP</div>
+        <div class="chip" data-value="Computer Vision"><span class="chip-check"><i class="fas fa-check"></i></span>Computer Vision</div>
+        <div class="chip" data-value="LangChain"><span class="chip-check"><i class="fas fa-check"></i></span>LangChain</div>
+        <div class="chip" data-value="Hugging Face"><span class="chip-check"><i class="fas fa-check"></i></span>Hugging Face</div>
+      </div>
+    </div>
+
+    <div id="chips-mobile">
+      <div class="ob-section-title">Mobile Development</div>
+      <div class="chips-grid">
+        <div class="chip" data-value="Android"><span class="chip-check"><i class="fas fa-check"></i></span>Android</div>
+        <div class="chip" data-value="Flutter"><span class="chip-check"><i class="fas fa-check"></i></span>Flutter</div>
+        <div class="chip" data-value="React Native"><span class="chip-check"><i class="fas fa-check"></i></span>React Native</div>
+        <div class="chip" data-value="iOS"><span class="chip-check"><i class="fas fa-check"></i></span>iOS</div>
+      </div>
+    </div>
+
+    <div id="chips-cloud">
+      <div class="ob-section-title">Cloud &amp; DevOps</div>
+      <div class="chips-grid">
+        <div class="chip" data-value="AWS"><span class="chip-check"><i class="fas fa-check"></i></span>AWS</div>
+        <div class="chip" data-value="Azure"><span class="chip-check"><i class="fas fa-check"></i></span>Azure</div>
+        <div class="chip" data-value="GCP"><span class="chip-check"><i class="fas fa-check"></i></span>GCP</div>
+        <div class="chip" data-value="Docker"><span class="chip-check"><i class="fas fa-check"></i></span>Docker</div>
+        <div class="chip" data-value="Kubernetes"><span class="chip-check"><i class="fas fa-check"></i></span>Kubernetes</div>
+        <div class="chip" data-value="Firebase"><span class="chip-check"><i class="fas fa-check"></i></span>Firebase</div>
+        <div class="chip" data-value="Git"><span class="chip-check"><i class="fas fa-check"></i></span>Git</div>
+        <div class="chip" data-value="Linux"><span class="chip-check"><i class="fas fa-check"></i></span>Linux</div>
+        <div class="chip" data-value="CI/CD"><span class="chip-check"><i class="fas fa-check"></i></span>CI/CD</div>
+      </div>
+    </div>
+
+    <div class="ob-nav">
+      <button class="btn-ob btn-ob-secondary" data-action="back"><i class="fas fa-arrow-left"></i> Back</button>
+      <button class="btn-ob btn-ob-primary" data-action="next">Continue <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       STEP 4 – INTERESTS & CAREER GOALS
+       ====================================================== -->
+  <div class="ob-card" data-step="4">
+    <div class="ob-step-badge"><i class="fas fa-star"></i> Step 4 of 7</div>
+    <h2 class="ob-card-title">Interests &amp; Career Goals</h2>
+    <p class="ob-card-subtitle">What excites you? This helps SkillSync AI recommend the right projects, domains and teammates for you.</p>
+
+    <div id="chips-interests">
+      <div class="ob-section-title">Interests</div>
+      <div class="chips-grid">
+        <div class="chip" data-value="Artificial Intelligence"><span class="chip-check"><i class="fas fa-check"></i></span>🤖 AI</div>
+        <div class="chip" data-value="Machine Learning"><span class="chip-check"><i class="fas fa-check"></i></span>🧠 Machine Learning</div>
+        <div class="chip" data-value="Web Development"><span class="chip-check"><i class="fas fa-check"></i></span>🌐 Web Dev</div>
+        <div class="chip" data-value="Android"><span class="chip-check"><i class="fas fa-check"></i></span>📱 Android</div>
+        <div class="chip" data-value="IoT"><span class="chip-check"><i class="fas fa-check"></i></span>🔌 IoT</div>
+        <div class="chip" data-value="Cloud"><span class="chip-check"><i class="fas fa-check"></i></span>☁️ Cloud</div>
+        <div class="chip" data-value="Cyber Security"><span class="chip-check"><i class="fas fa-check"></i></span>🔒 Cyber Security</div>
+        <div class="chip" data-value="Blockchain"><span class="chip-check"><i class="fas fa-check"></i></span>⛓️ Blockchain</div>
+        <div class="chip" data-value="Game Development"><span class="chip-check"><i class="fas fa-check"></i></span>🎮 Game Dev</div>
+        <div class="chip" data-value="Data Science"><span class="chip-check"><i class="fas fa-check"></i></span>📊 Data Science</div>
+        <div class="chip" data-value="AR/VR"><span class="chip-check"><i class="fas fa-check"></i></span>🥽 AR/VR</div>
+        <div class="chip" data-value="DevOps"><span class="chip-check"><i class="fas fa-check"></i></span>⚙️ DevOps</div>
+        <div class="chip" data-value="UI/UX"><span class="chip-check"><i class="fas fa-check"></i></span>🎨 UI/UX</div>
+        <div class="chip" data-value="Robotics"><span class="chip-check"><i class="fas fa-check"></i></span>🤖 Robotics</div>
+      </div>
+    </div>
+
+    <div id="chips-domains">
+      <div class="ob-section-title">Preferred Domains</div>
+      <div class="chips-grid">
+        <div class="chip" data-value="Healthcare"><span class="chip-check"><i class="fas fa-check"></i></span>🏥 Healthcare</div>
+        <div class="chip" data-value="Education"><span class="chip-check"><i class="fas fa-check"></i></span>📚 Education</div>
+        <div class="chip" data-value="Finance"><span class="chip-check"><i class="fas fa-check"></i></span>💰 Finance</div>
+        <div class="chip" data-value="Agriculture"><span class="chip-check"><i class="fas fa-check"></i></span>🌾 Agriculture</div>
+        <div class="chip" data-value="E-commerce"><span class="chip-check"><i class="fas fa-check"></i></span>🛒 E-commerce</div>
+        <div class="chip" data-value="Automation"><span class="chip-check"><i class="fas fa-check"></i></span>🤖 Automation</div>
+        <div class="chip" data-value="Entertainment"><span class="chip-check"><i class="fas fa-check"></i></span>🎬 Entertainment</div>
+        <div class="chip" data-value="Smart Cities"><span class="chip-check"><i class="fas fa-check"></i></span>🏙️ Smart Cities</div>
+        <div class="chip" data-value="Government"><span class="chip-check"><i class="fas fa-check"></i></span>🏛️ Government</div>
+      </div>
+    </div>
+
+    <div id="chips-roles">
+      <div class="ob-section-title">Preferred Roles</div>
+      <div class="chips-grid">
+        <div class="chip" data-value="Frontend"><span class="chip-check"><i class="fas fa-check"></i></span>Frontend</div>
+        <div class="chip" data-value="Backend"><span class="chip-check"><i class="fas fa-check"></i></span>Backend</div>
+        <div class="chip" data-value="Full Stack"><span class="chip-check"><i class="fas fa-check"></i></span>Full Stack</div>
+        <div class="chip" data-value="AI Engineer"><span class="chip-check"><i class="fas fa-check"></i></span>AI Engineer</div>
+        <div class="chip" data-value="ML Engineer"><span class="chip-check"><i class="fas fa-check"></i></span>ML Engineer</div>
+        <div class="chip" data-value="Data Scientist"><span class="chip-check"><i class="fas fa-check"></i></span>Data Scientist</div>
+        <div class="chip" data-value="Android Dev"><span class="chip-check"><i class="fas fa-check"></i></span>Android Dev</div>
+        <div class="chip" data-value="Cloud Engineer"><span class="chip-check"><i class="fas fa-check"></i></span>Cloud Engineer</div>
+        <div class="chip" data-value="DevOps"><span class="chip-check"><i class="fas fa-check"></i></span>DevOps</div>
+        <div class="chip" data-value="UI Designer"><span class="chip-check"><i class="fas fa-check"></i></span>UI Designer</div>
+        <div class="chip" data-value="Project Manager"><span class="chip-check"><i class="fas fa-check"></i></span>Project Manager</div>
+      </div>
+    </div>
+
+    <div id="chips-goals">
+      <div class="ob-section-title">Career Goals</div>
+      <div class="chips-grid">
+        <div class="chip" data-value="Get Internship"><span class="chip-check"><i class="fas fa-check"></i></span>💼 Get Internship</div>
+        <div class="chip" data-value="Build Portfolio"><span class="chip-check"><i class="fas fa-check"></i></span>📁 Build Portfolio</div>
+        <div class="chip" data-value="Hackathons"><span class="chip-check"><i class="fas fa-check"></i></span>🏆 Hackathons</div>
+        <div class="chip" data-value="Research"><span class="chip-check"><i class="fas fa-check"></i></span>🔬 Research</div>
+        <div class="chip" data-value="Higher Studies"><span class="chip-check"><i class="fas fa-check"></i></span>🎓 Higher Studies</div>
+        <div class="chip" data-value="Open Source"><span class="chip-check"><i class="fas fa-check"></i></span>🌍 Open Source</div>
+        <div class="chip" data-value="Startup"><span class="chip-check"><i class="fas fa-check"></i></span>🚀 Startup</div>
+        <div class="chip" data-value="Freelancing"><span class="chip-check"><i class="fas fa-check"></i></span>💻 Freelancing</div>
+      </div>
+    </div>
+
+    <div id="chips-project-types">
+      <div class="ob-section-title">What Kind of Projects Interest You?</div>
+      <div class="chips-grid">
+        <div class="chip" data-value="AI/ML Projects"><span class="chip-check"><i class="fas fa-check"></i></span>🤖 AI/ML</div>
+        <div class="chip" data-value="Web Development"><span class="chip-check"><i class="fas fa-check"></i></span>🌐 Web Dev</div>
+        <div class="chip" data-value="Mobile Apps"><span class="chip-check"><i class="fas fa-check"></i></span>📱 Mobile Apps</div>
+        <div class="chip" data-value="Cloud Computing"><span class="chip-check"><i class="fas fa-check"></i></span>☁️ Cloud</div>
+        <div class="chip" data-value="IoT Projects"><span class="chip-check"><i class="fas fa-check"></i></span>🌐 IoT</div>
+        <div class="chip" data-value="Cybersecurity"><span class="chip-check"><i class="fas fa-check"></i></span>🔒 Cybersecurity</div>
+        <div class="chip" data-value="Data Science"><span class="chip-check"><i class="fas fa-check"></i></span>📊 Data Science</div>
+        <div class="chip" data-value="Game Development"><span class="chip-check"><i class="fas fa-check"></i></span>🎮 Game Dev</div>
+        <div class="chip" data-value="E-commerce"><span class="chip-check"><i class="fas fa-check"></i></span>🛒 E-commerce</div>
+        <div class="chip" data-value="College Mini Projects"><span class="chip-check"><i class="fas fa-check"></i></span>📚 Mini Projects</div>
+        <div class="chip" data-value="Hackathon Projects"><span class="chip-check"><i class="fas fa-check"></i></span>🏆 Hackathon</div>
+        <div class="chip" data-value="Startup Ideas"><span class="chip-check"><i class="fas fa-check"></i></span>💡 Startup Ideas</div>
+        <div class="chip" data-value="Research Projects"><span class="chip-check"><i class="fas fa-check"></i></span>🔬 Research</div>
+      </div>
+    </div>
+
+    <div class="ob-divider"></div>
+    <div class="ob-section-title">Experience Level</div>
+    <div class="radio-group">
+      <label class="radio-option" data-group="experience" data-value="Beginner">
+        <input type="radio" name="experience"><div class="radio-dot"></div> 🌱 Beginner
+      </label>
+      <label class="radio-option" data-group="experience" data-value="Intermediate">
+        <input type="radio" name="experience"><div class="radio-dot"></div> 🚀 Intermediate
+      </label>
+      <label class="radio-option" data-group="experience" data-value="Advanced">
+        <input type="radio" name="experience"><div class="radio-dot"></div> ⭐ Advanced
+      </label>
+    </div>
+
+    <div class="ob-nav">
+      <button class="btn-ob btn-ob-secondary" data-action="back"><i class="fas fa-arrow-left"></i> Back</button>
+      <button class="btn-ob btn-ob-primary" data-action="next">Continue <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       STEP 5 – COLLABORATION PREFERENCES
+       ====================================================== -->
+  <div class="ob-card" data-step="5">
+    <div class="ob-step-badge"><i class="fas fa-users"></i> Step 5 of 7</div>
+    <h2 class="ob-card-title">Collaboration Preferences</h2>
+    <p class="ob-card-subtitle">This is what makes SkillSync unique — tell us how you like to work so we can find your ideal teammates.</p>
+
+    <div class="ob-section-title">Looking for a Team?</div>
+    <div class="radio-group">
+      <label class="radio-option selected" data-group="lookingForTeam" data-value="yes">
+        <input type="radio" name="lookingForTeam" checked><div class="radio-dot"></div> 👥 Yes, looking for teammates
+      </label>
+      <label class="radio-option" data-group="lookingForTeam" data-value="no">
+        <input type="radio" name="lookingForTeam"><div class="radio-dot"></div> 🧑‍💻 No, working solo
+      </label>
+    </div>
+
+    <div class="ob-divider"></div>
+    <div class="ob-section-title">Preferred Team Size</div>
+    <div class="radio-group">
+      <label class="radio-option" data-group="teamSize" data-value="2"><input type="radio" name="teamSize"><div class="radio-dot"></div> 2 people</label>
+      <label class="radio-option" data-group="teamSize" data-value="3"><input type="radio" name="teamSize"><div class="radio-dot"></div> 3 people</label>
+      <label class="radio-option" data-group="teamSize" data-value="4"><input type="radio" name="teamSize"><div class="radio-dot"></div> 4 people</label>
+      <label class="radio-option" data-group="teamSize" data-value="5+"><input type="radio" name="teamSize"><div class="radio-dot"></div> 5+ people</label>
+    </div>
+
+    <div class="ob-divider"></div>
+    <div class="ob-section-title">Weekly Availability</div>
+    <div class="radio-group">
+      <label class="radio-option" data-group="availability" data-value="5 hrs/week"><input type="radio" name="availability"><div class="radio-dot"></div> ~5 hrs/week</label>
+      <label class="radio-option" data-group="availability" data-value="10 hrs/week"><input type="radio" name="availability"><div class="radio-dot"></div> ~10 hrs/week</label>
+      <label class="radio-option" data-group="availability" data-value="15 hrs/week"><input type="radio" name="availability"><div class="radio-dot"></div> ~15 hrs/week</label>
+      <label class="radio-option" data-group="availability" data-value="20+ hrs/week"><input type="radio" name="availability"><div class="radio-dot"></div> 20+ hrs/week</label>
+    </div>
+
+    <div class="ob-divider"></div>
+    <div class="ob-section-title">Preferred Working Hours</div>
+    <div class="radio-group">
+      <label class="radio-option" data-group="workingStyle" data-value="Morning"><input type="radio" name="workingStyle"><div class="radio-dot"></div> ☀️ Morning</label>
+      <label class="radio-option" data-group="workingStyle" data-value="Afternoon"><input type="radio" name="workingStyle"><div class="radio-dot"></div> 🌤️ Afternoon</label>
+      <label class="radio-option" data-group="workingStyle" data-value="Evening"><input type="radio" name="workingStyle"><div class="radio-dot"></div> 🌆 Evening</label>
+      <label class="radio-option" data-group="workingStyle" data-value="Night"><input type="radio" name="workingStyle"><div class="radio-dot"></div> 🌙 Night</label>
+    </div>
+
+    <div class="ob-divider"></div>
+    <div id="chips-languages">
+      <div class="ob-section-title">Preferred Communication Languages</div>
+      <div class="chips-grid">
+        <div class="chip" data-value="English"><span class="chip-check"><i class="fas fa-check"></i></span>English</div>
+        <div class="chip" data-value="Hindi"><span class="chip-check"><i class="fas fa-check"></i></span>Hindi</div>
+        <div class="chip" data-value="Kannada"><span class="chip-check"><i class="fas fa-check"></i></span>Kannada</div>
+        <div class="chip" data-value="Tamil"><span class="chip-check"><i class="fas fa-check"></i></span>Tamil</div>
+        <div class="chip" data-value="Telugu"><span class="chip-check"><i class="fas fa-check"></i></span>Telugu</div>
+        <div class="chip" data-value="Malayalam"><span class="chip-check"><i class="fas fa-check"></i></span>Malayalam</div>
+        <div class="chip" data-value="Marathi"><span class="chip-check"><i class="fas fa-check"></i></span>Marathi</div>
+        <div class="chip" data-value="Bengali"><span class="chip-check"><i class="fas fa-check"></i></span>Bengali</div>
+        <div class="chip" data-value="Others"><span class="chip-check"><i class="fas fa-check"></i></span>Others</div>
+      </div>
+    </div>
+
+    <div class="ob-nav">
+      <button class="btn-ob btn-ob-secondary" data-action="back"><i class="fas fa-arrow-left"></i> Back</button>
+      <button class="btn-ob btn-ob-primary" data-action="next">Continue <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+  <!-- ======================================================
+       STEP 6 – PORTFOLIO & SOCIAL LINKS
+       ====================================================== -->
+  <div class="ob-card" data-step="6">
+    <div class="ob-step-badge"><i class="fas fa-briefcase"></i> Step 6 of 7 <span style="opacity:0.6;font-size:0.68rem;margin-left:6px;">Optional</span></div>
+    <h2 class="ob-card-title">Portfolio &amp; Social Links</h2>
+    <p class="ob-card-subtitle">Share your work so teammates and AI can understand your experience. Everything here is optional — add what you have.</p>
+
+    <div class="ob-section-title">Coding Profiles</div>
+    <div class="social-link-row">
+      <div class="social-link-icon" style="color:#f0f6fc;"><i class="fab fa-github"></i></div>
+      <input class="ob-input" id="obGithub" type="url" placeholder="https://github.com/yourusername">
+    </div>
+    <div class="social-link-row">
+      <div class="social-link-icon" style="color:#0a66c2;"><i class="fab fa-linkedin"></i></div>
+      <input class="ob-input" id="obLinkedin" type="url" placeholder="https://linkedin.com/in/yourprofile">
+    </div>
+    <div class="social-link-row">
+      <div class="social-link-icon" style="color:#a78bfa;"><i class="fas fa-globe"></i></div>
+      <input class="ob-input" id="obPortfolio" type="url" placeholder="https://yourportfolio.com">
+    </div>
+
+    <div class="ob-section-title" style="margin-top:24px;">Competitive Programming</div>
+    <div class="social-link-row">
+      <div class="social-link-icon" style="color:#ffa116;"><i class="fas fa-code"></i></div>
+      <input class="ob-input" id="obLeetcode" type="text" placeholder="LeetCode username">
+    </div>
+    <div class="social-link-row">
+      <div class="social-link-icon" style="color:#6b46c1;"><i class="fas fa-trophy"></i></div>
+      <input class="ob-input" id="obCodechef" type="text" placeholder="CodeChef username">
+    </div>
+    <div class="social-link-row">
+      <div class="social-link-icon" style="color:#00ea64;"><i class="fas fa-terminal"></i></div>
+      <input class="ob-input" id="obHackerrank" type="text" placeholder="HackerRank username">
+    </div>
+    <div class="social-link-row">
+      <div class="social-link-icon" style="color:#1196f0;"><i class="fas fa-fire"></i></div>
+      <input class="ob-input" id="obCodeforces" type="text" placeholder="Codeforces username">
+    </div>
+
+    <div class="ob-section-title" style="margin-top:24px;">Resume</div>
+    <div class="resume-drop-zone" id="resumeDropZone">
+      <i class="fas fa-cloud-upload-alt"></i>
+      <p><strong>Click to upload</strong> or drag &amp; drop your resume</p>
+      <p><small>PDF or Word document &bull; Max 10 MB</small></p>
+      <input type="file" id="resumeFileInput" accept=".pdf,.doc,.docx">
+    </div>
+    <div class="resume-file-name" id="resumeFileName">
+      <i class="fas fa-file-pdf"></i>
+      <span id="resumeNameText">resume.pdf</span>
+    </div>
+
+    <div class="ob-nav">
+      <button class="btn-ob btn-ob-secondary" data-action="back"><i class="fas fa-arrow-left"></i> Back</button>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <button class="btn-ob-skip" data-action="skip">Skip for now</button>
+        <button class="btn-ob btn-ob-primary" data-action="next">Continue <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       STEP 7 – AI PERSONALIZATION
+       ====================================================== -->
+  <div class="ob-card" data-step="7">
+    <div class="ob-step-badge"><i class="fas fa-robot"></i> Step 7 of 7 <span style="opacity:0.6;font-size:0.68rem;margin-left:6px;">Optional</span></div>
+    <h2 class="ob-card-title">🤖 How would you like AI to help you?</h2>
+    <p class="ob-card-subtitle">Customise how SkillSync's AI works for you. You can change these anytime in Settings.</p>
+
+    <div class="ob-section-title">AI Features to Enable</div>
+    <div class="checkbox-grid" id="ai-prefs-container">
+      <div class="checkbox-option checked" data-value="projectRecommendations">
+        <input type="checkbox" checked><div class="checkbox-box"><i class="fas fa-check"></i></div>
+        <span class="checkbox-label">Recommend Projects</span>
+      </div>
+      <div class="checkbox-option checked" data-value="teammateRecommendations">
+        <input type="checkbox" checked><div class="checkbox-box"><i class="fas fa-check"></i></div>
+        <span class="checkbox-label">Recommend Team Members</span>
+      </div>
+      <div class="checkbox-option checked" data-value="featureSuggestions">
+        <input type="checkbox" checked><div class="checkbox-box"><i class="fas fa-check"></i></div>
+        <span class="checkbox-label">Suggest Features</span>
+      </div>
+      <div class="checkbox-option checked" data-value="taskBreakdown">
+        <input type="checkbox" checked><div class="checkbox-box"><i class="fas fa-check"></i></div>
+        <span class="checkbox-label">Generate Task Breakdown</span>
+      </div>
+      <div class="checkbox-option checked" data-value="learningRoadmap">
+        <input type="checkbox" checked><div class="checkbox-box"><i class="fas fa-check"></i></div>
+        <span class="checkbox-label">Weekly Roadmap</span>
+      </div>
+      <div class="checkbox-option checked" data-value="learningRecommendations">
+        <input type="checkbox" checked><div class="checkbox-box"><i class="fas fa-check"></i></div>
+        <span class="checkbox-label">Learning Recommendations</span>
+      </div>
+      <div class="checkbox-option checked" data-value="resumeSuggestions">
+        <input type="checkbox" checked><div class="checkbox-box"><i class="fas fa-check"></i></div>
+        <span class="checkbox-label">Resume Feedback</span>
+      </div>
+      <div class="checkbox-option checked" data-value="portfolioReview">
+        <input type="checkbox" checked><div class="checkbox-box"><i class="fas fa-check"></i></div>
+        <span class="checkbox-label">Portfolio Review</span>
+      </div>
+      <div class="checkbox-option checked" data-value="codingResources">
+        <input type="checkbox" checked><div class="checkbox-box"><i class="fas fa-check"></i></div>
+        <span class="checkbox-label">Coding Resources</span>
+      </div>
+    </div>
+
+    <div class="ob-divider"></div>
+    <div class="ob-section-title">Preferred AI Tone</div>
+    <div class="radio-group">
+      <label class="radio-option" data-group="aiTone" data-value="Professional">
+        <input type="radio" name="aiTone"><div class="radio-dot"></div> 💼 Professional
+      </label>
+      <label class="radio-option selected" data-group="aiTone" data-value="Friendly">
+        <input type="radio" name="aiTone" checked><div class="radio-dot"></div> 😊 Friendly
+      </label>
+      <label class="radio-option" data-group="aiTone" data-value="Mentor">
+        <input type="radio" name="aiTone"><div class="radio-dot"></div> 🎓 Mentor
+      </label>
+      <label class="radio-option" data-group="aiTone" data-value="Quick & Short">
+        <input type="radio" name="aiTone"><div class="radio-dot"></div> ⚡ Quick &amp; Short
+      </label>
+    </div>
+
+    <div class="ob-nav">
+      <button class="btn-ob btn-ob-secondary" data-action="back"><i class="fas fa-arrow-left"></i> Back</button>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <button class="btn-ob-skip" data-action="skip">Skip for now</button>
+        <button class="btn-ob btn-ob-primary" id="btnFinish">Finish Setup <i class="fas fa-check"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       SCREEN 8 – COMPLETION
+       ====================================================== -->
+  <div class="ob-card" data-step="8">
+    <div class="ob-complete">
+      <span class="ob-hero-emoji">🎉</span>
+      <h1>You're all set!</h1>
+      <p class="tagline">SkillSync is ready and personalised for you.<br>From now on we'll:</p>
+      <div class="complete-features">
+        <div class="complete-feature-item"><i class="fas fa-check-circle"></i> Recommend projects that match your skills &amp; interests</div>
+        <div class="complete-feature-item"><i class="fas fa-check-circle"></i> Match you with complementary teammates</div>
+        <div class="complete-feature-item"><i class="fas fa-check-circle"></i> Suggest skills to grow your profile</div>
+        <div class="complete-feature-item"><i class="fas fa-check-circle"></i> Help you build and track your portfolio</div>
+        <div class="complete-feature-item"><i class="fas fa-check-circle"></i> Keep your projects organised with AI</div>
+      </div>
+      <a href="dashboard.html" class="btn-ob-dashboard"><i class="fas fa-rocket"></i> Enter Dashboard</a>
+    </div>
+  </div>
+
+</div><!-- end onboarding-wrapper -->
+
+<!-- Autosave Toast -->
+<div class="autosave-toast" id="autosaveToast"><i class="fas fa-check-circle"></i> Progress saved</div>
+
+<script src="js/onboarding.js"></script>
+</body>
+</html>
