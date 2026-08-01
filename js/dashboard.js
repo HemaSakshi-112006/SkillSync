@@ -31,6 +31,26 @@ if (dashSearch) {
     });
 }
 
-
-
-
+// ===== Dynamic Welcome Name =====
+const welcomeName = document.getElementById('welcomeName');
+if (welcomeName) {
+    let firstName = 'Arjun'; // Fallback
+    try {
+        const userStr = localStorage.getItem('user');
+        if (userStr) {
+            const userObj = JSON.parse(userStr);
+            const fullName = userObj.fullName || userObj.name || firstName;
+            firstName = fullName.split(' ')[0];
+        } else {
+            const token = localStorage.getItem('token');
+            if (token) {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                const fullName = payload.fullName || payload.name || firstName;
+                firstName = fullName.split(' ')[0];
+            }
+        }
+    } catch (e) {
+        console.error('Error parsing user for dashboard', e);
+    }
+    welcomeName.textContent = firstName;
+}

@@ -8,6 +8,33 @@ class AppNavbar extends HTMLElement {
         const isActive = (path) => currentPath.includes(path) ? 'active' : '';
         const isDashboard = currentPath.endsWith('/') || isActive('dashboard.html');
 
+        let fullName = 'Hema Sakshi';
+        let email = 'Sakshi@123S@gmail.com';
+        
+        try {
+            const userStr = localStorage.getItem('user');
+            if (userStr) {
+                const userObj = JSON.parse(userStr);
+                fullName = userObj.fullName || userObj.name || fullName;
+                email = userObj.email || userObj.username || email;
+            } else {
+                const token = localStorage.getItem('token');
+                if (token) {
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    fullName = payload.fullName || payload.name || fullName;
+                    email = payload.email || payload.username || email;
+                }
+            }
+        } catch (e) {
+            console.error('Error parsing user data:', e);
+        }
+
+        const getInitials = (name) => {
+            if (!name) return 'U';
+            return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+        };
+        const initials = getInitials(fullName);
+
         this.innerHTML = `
         <header class="topbar">
             <div class="topbar-left">
@@ -37,19 +64,19 @@ class AppNavbar extends HTMLElement {
                 
                 <div class="profile-dropdown-container">
                     <div class="user-menu" id="userMenuBtn">
-                        <div class="user-avatar">HS</div>
+                        <div class="user-avatar">${initials}</div>
                         <div class="user-info">
-                            <span class="user-name">Hema Sakshi</span>
+                            <span class="user-name">${fullName}</span>
                         </div>
                         <i class="fas fa-chevron-down dropdown-icon"></i>
                     </div>
                     
                     <div class="profile-dropdown-menu" id="profileDropdown">
                         <div class="dropdown-header">
-                            <div class="dropdown-avatar">HS</div>
+                            <div class="dropdown-avatar">${initials}</div>
                             <div class="dropdown-user-details">
-                                <span class="dropdown-name">Hema Sakshi</span>
-                                <span class="dropdown-username">sakshi123</span>
+                                <span class="dropdown-name">${fullName}</span>
+                                <span class="dropdown-username">${email}</span>
                             </div>
                         </div>
                         <div class="dropdown-divider"></div>
@@ -92,6 +119,14 @@ class AppNavbar extends HTMLElement {
                     userMenuBtn.classList.remove('active');
                     profileDropdown.classList.remove('show');
                 }
+            });
+        }
+
+        const logoutBtn = this.querySelector('.logout');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
             });
         }
     }
