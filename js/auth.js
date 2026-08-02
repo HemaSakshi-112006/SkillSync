@@ -62,8 +62,10 @@ function isValidEmail(email) {
 
 async function handleLogin(e) {
     e.preventDefault();
+
     const loginIdentifier = document.getElementById("loginIdentifier").value.trim();
     const password = document.getElementById("loginPassword").value;
+
     try {
         const response = await fetch(`${BASE_URL}/auth/login`, {
             method: "POST",
@@ -75,32 +77,30 @@ async function handleLogin(e) {
                 password
             })
         });
+
         const data = await response.json();
+
         if (!response.ok) {
             alert(data.message);
             return;
         }
+
         // Save JWT Token
-      const data = await response.json();
+        localStorage.setItem("token", data.token);
 
-if (!response.ok) {
-    alert(data.message);
-    return;
-}
+        // Save User Details
+        localStorage.setItem("user", JSON.stringify(data.user));
 
-// Save JWT Token
-localStorage.setItem("token", data.token);
-// Save User Details
-localStorage.setItem("user", JSON.stringify(data.user));
-alert("Login Successful!");
-// Redirect
-if (data.user.isProfileCompleted) {
-    window.location.href = "dashboard.html";
-} else {
-    window.location.href = "onboarding.html";
-}
-    }
-    catch (error) {
+        alert("Login Successful!");
+
+        // Redirect based on onboarding status
+        if (data.user.isProfileCompleted) {
+            window.location.href = "dashboard.html";
+        } else {
+            window.location.href = "onboarding.html";
+        }
+
+    } catch (error) {
         console.error(error);
         alert("Server Error");
     }
