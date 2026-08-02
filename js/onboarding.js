@@ -370,7 +370,9 @@ async function submitOnboarding() {
         return;
     }
     try {
-        const res = await fetch('/api/user/onboarding', {
+        console.log("FINAL ONBOARDING DATA:", onboardingData);
+        
+       const res = await fetch(`${BASE_URL}/user/onboarding`,{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
