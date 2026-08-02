@@ -157,10 +157,21 @@ const userSchema = new mongoose.Schema(
         default: []
     },
 
+
+    projectTypes: {
+    type: [String],
+    default: []
+},
+
     availability: {
         type: String,
         default: ""
     },
+
+    workingStyle: {
+    type: String,
+    default: ""
+},
 
     preferredTeamSize: {
         type: Number,
@@ -233,6 +244,16 @@ const userSchema = new mongoose.Schema(
             default: true
         }
     },
+
+    aiFeatures: {
+    type: [String],
+    default: []
+},
+
+aiTone: {
+    type: String,
+    default: ""
+},
 
     // ==========================
     // Account Status
