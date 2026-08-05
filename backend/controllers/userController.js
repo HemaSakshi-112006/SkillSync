@@ -5,7 +5,6 @@ const updateOnboarding = async (req, res) => {
     try {
         // Get the logged-in user's ID from JWT middleware
         const userId = req.user.userId;
-
         const onboardingData = { ...req.body };
 
 const arrayFields = [

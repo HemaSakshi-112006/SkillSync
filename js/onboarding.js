@@ -382,15 +382,14 @@ async function submitOnboarding() {
         return;
     }
     try {
-        console.log("FINAL ONBOARDING DATA:", onboardingData);
-
         const formData = new FormData();
 
 Object.entries(onboardingData).forEach(([key, value]) => {
     if (
     key !== "profileImage" &&
     key !== "profileImageFile" &&
-    key !== "resume"
+    key !== "resume" &&
+    key !== "resumeFile"
 ) {
         if (Array.isArray(value)) {
             formData.append(key, JSON.stringify(value));
