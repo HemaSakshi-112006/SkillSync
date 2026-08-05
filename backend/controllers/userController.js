@@ -36,8 +36,11 @@ if (req.files && req.files.profileImage) {
         const updatedUser = await User.findByIdAndUpdate(
             userId,
             {
-                $set: req.body
-            },
+    $set: {
+        ...req.body,
+        ...(profileImageUrl && { profileImage: profileImageUrl })
+    }
+},
             {
                 new: true,
                 runValidators: true

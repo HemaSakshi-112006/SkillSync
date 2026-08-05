@@ -148,14 +148,25 @@ function initAvatarUpload() {
             return;
         }
         const reader = new FileReader();
-        reader.onload = (ev) => {
-            avatarInitials.style.display = 'none';
-            const img = avatarPreview.querySelector('img') || document.createElement('img');
-            img.src = ev.target.result;
-            if (!avatarPreview.contains(img)) avatarPreview.appendChild(img);
-            onboardingData.profileImage = ev.target.result;
-        };
-        reader.readAsDataURL(file);
+
+reader.onload = (ev) => {
+    avatarInitials.style.display = 'none';
+
+    const img = avatarPreview.querySelector('img') || document.createElement('img');
+    img.src = ev.target.result;
+
+    if (!avatarPreview.contains(img)) {
+        avatarPreview.appendChild(img);
+    }
+
+    // Keep the preview
+    onboardingData.profileImage = ev.target.result;
+
+    // Keep the actual file for Cloudinary upload
+    onboardingData.profileImageFile = file;
+};
+
+reader.readAsDataURL(file);
     });
 
     // Update initials from fullName field
@@ -371,6 +382,28 @@ async function submitOnboarding() {
     }
     try {
         console.log("FINAL ONBOARDING DATA:", onboardingData);
+
+        const formData = new FormData();
+
+Object.entries(onboardingData).forEach(([key, value]) => {
+    if (
+    key !== "profileImage" &&
+    key !== "profileImageFile" &&
+    key !== "resume"
+) {
+        if (Array.isArray(value)) {
+            formData.append(key, JSON.stringify(value));
+        } else {
+            formData.append(key, value ?? "");
+        }
+    }
+});
+   if (onboardingData.profileImageFile) {
+     formData.append(
+        "profileImage",
+        onboardingData.profileImageFile
+      );
+ } 
         
        const res = await fetch(`${BASE_URL}/user/onboarding`,{
             method: 'PUT',
