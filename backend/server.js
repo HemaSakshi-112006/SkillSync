@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 
 // Middleware
-app.use(express.json({ limit: "10mb" }));
+app.use(express.json({ limit: "30 mb" }));
 
 // Routes
 app.use("/api/auth", authRoutes);
