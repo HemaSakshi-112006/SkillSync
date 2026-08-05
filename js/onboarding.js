@@ -215,7 +215,8 @@ function initResumeUpload() {
         }
         resumeNameText.textContent = file.name;
         resumeFileName.classList.add('visible');
-        onboardingData.resume = file.name; // store name; actual upload to backend later
+        onboardingData.resume = file.name;
+        onboardingData.resumeFile = file;
     }
 }
 
@@ -404,6 +405,12 @@ Object.entries(onboardingData).forEach(([key, value]) => {
         onboardingData.profileImageFile
       );
  } 
+ if (onboardingData.resumeFile) {
+    formData.append(
+        "resume",
+        onboardingData.resumeFile
+    );
+}
   const res = await fetch(`${BASE_URL}/user/onboarding`, {
     method: 'PUT',
     headers: {

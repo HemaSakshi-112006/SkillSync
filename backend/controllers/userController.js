@@ -55,13 +55,40 @@ if (req.files && req.files.profileImage) {
     profileImageUrl = result.secure_url;
 }
 
+let resumeUrl = null;
+
+if (req.files && req.files.resume) {
+    const file = req.files.resume[0];
+
+    const result = await new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+            {
+                folder: "skillsync/resumes",
+                resource_type: "raw"
+            },
+            (error, result) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(result);
+                }
+            }
+        );
+
+        stream.end(file.buffer);
+    });
+
+    resumeUrl = result.secure_url;
+}
+
         // Update the user's profile
         const updatedUser = await User.findByIdAndUpdate(
             userId,
             {
     $set: {
         ...onboardingData,
-        ...(profileImageUrl && { profileImage: profileImageUrl })
+        ...(profileImageUrl && { profileImage: profileImageUrl }),
+        ...(resumeUrl && { resume: resumeUrl })
     }
 },
             {
