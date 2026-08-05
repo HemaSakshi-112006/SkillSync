@@ -80,7 +80,7 @@ class AppNavbar extends HTMLElement {
                             </div>
                         </div>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="profile.html" class="dropdown-item"><i class="fas fa-user"></i> My Profile</a>
                         <a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
                         <a href="#" class="dropdown-item"><i class="fas fa-question-circle"></i> Help & Support</a>
                         <div class="dropdown-divider"></div>

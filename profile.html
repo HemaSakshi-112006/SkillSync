@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | SkillSync</title>
+    <meta name="description" content="View and edit your complete SkillSync student profile, academic info, skills, coding handles, AI preferences, and resume.">
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+    <div class="app-layout top-nav-layout">
+        <!-- Top Navbar Component -->
+        <app-navbar></app-navbar>
+
+        <!-- Main Profile Page Container -->
+        <main class="main-content">
+            <div class="profile-container">
+
+                <!-- Hidden File Inputs for Banner, Avatar, and Resume -->
+                <input type="file" id="bannerFileInput" accept="image/*" style="display:none;">
+                <input type="file" id="avatarFileInput" accept="image/*" style="display:none;">
+                <input type="file" id="resumeFileInput" accept=".pdf,.doc,.docx" style="display:none;">
+
+                <!-- ============================================================
+                     1. PROFILE HEADER CARD (BANNER PHOTO + AVATAR + HEADER INFO)
+                     ============================================================ -->
+                <section class="profile-header-card">
+                    <!-- Background Cover Banner Photo -->
+                    <div class="profile-banner" id="profileBanner">
+                        <div class="profile-banner-overlay"></div>
+                        <button class="banner-edit-btn" id="bannerEditBtn" onclick="triggerFileInput('bannerFileInput')" style="display:none;">
+                            <i class="fas fa-camera"></i> Change Cover Photo
+                        </button>
+                    </div>
+
+                    <!-- Header Body Info & Avatar -->
+                    <div class="header-body">
+                        <div class="header-top-row">
+                            <!-- Avatar Image & Edit Camera Overlay -->
+                            <div class="avatar-container">
+                                <img id="avatarImg" class="avatar-img" src="" alt="Profile Avatar" style="display:none;">
+                                <div id="avatarPlaceholder" class="avatar-placeholder">U</div>
+                                <div class="avatar-edit-overlay" id="avatarEditOverlay" onclick="triggerFileInput('avatarFileInput')" style="display:none;">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Change Photo</span>
+                                </div>
+                            </div>
+
+                            <!-- Mode Control Buttons (Edit Profile / Save / Cancel) -->
+                            <div class="header-actions" id="headerActions">
+                                <button class="btn btn-primary" onclick="enableEditMode()">
+                                    <i class="fas fa-pen"></i> Edit Profile
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- User Details -->
+                        <div class="header-info-main">
+                            <div class="user-identity">
+                                <h1 class="profile-fullname" id="displayFullName">Ria Jain</h1>
+                                <span class="profile-username" id="displayUsername">@ria_smart</span>
+                                <span class="profile-status-badge">
+                                    <span class="status-dot"></span> Looking for Team
+                                </span>
+                            </div>
+
+                            <p class="profile-bio-text" id="displayBio">
+                                Loading bio...
+                            </p>
+
+                            <div class="header-meta-row">
+                                <div class="meta-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span id="displayCollegeLoc">PES University • Bengaluru</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-file-alt"></i>
+                                    <a class="resume-quick-pill" id="displayResumePill" href="#resume" onclick="viewResume()">
+                                        <i class="fas fa-file-pdf"></i> Resume.pdf
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- ============================================================
+                     2. MAIN CONTENT LAYOUT (SIDEBAR NAV + SECTION CARDS)
+                     ============================================================ -->
+                <div class="profile-content-grid">
+                    
+                    <!-- Left Sidebar Quick Navigation -->
+                    <aside class="profile-nav-sidebar">
+                        <div class="nav-sidebar-title">Profile Navigation</div>
+                        <ul class="nav-sidebar-list">
+                            <li><a href="#personal" class="nav-sidebar-link active"><i class="fas fa-user"></i> Personal Info</a></li>
+                            <li><a href="#academic" class="nav-sidebar-link"><i class="fas fa-graduation-cap"></i> Academic Info</a></li>
+                            <li><a href="#skills" class="nav-sidebar-link"><i class="fas fa-code"></i> Skills</a></li>
+                            <li><a href="#coding" class="nav-sidebar-link"><i class="fas fa-laptop-code"></i> Coding Profiles</a></li>
+                            <li><a href="#interests" class="nav-sidebar-link"><i class="fas fa-heart"></i> Interests</a></li>
+                            <li><a href="#experience" class="nav-sidebar-link"><i class="fas fa-chart-line"></i> Experience Level</a></li>
+                            <li><a href="#project-prefs" class="nav-sidebar-link"><i class="fas fa-sliders-h"></i> Project Preferences</a></li>
+                            <li><a href="#career-goals" class="nav-sidebar-link"><i class="fas fa-bullseye"></i> Career Goals</a></li>
+                            <li><a href="#availability" class="nav-sidebar-link"><i class="fas fa-clock"></i> Availability & Style</a></li>
+                            <li><a href="#ai-prefs" class="nav-sidebar-link"><i class="fas fa-robot"></i> AI Preferences</a></li>
+                            <li><a href="#languages" class="nav-sidebar-link"><i class="fas fa-language"></i> Languages</a></li>
+                            <li><a href="#resume" class="nav-sidebar-link"><i class="fas fa-file-pdf"></i> Resume File</a></li>
+                        </ul>
+                    </aside>
+
+                    <!-- Right Main Sections Stack -->
+                    <div class="profile-sections-stack">
+
+                        <!-- Personal Information -->
+                        <section class="profile-card" id="personal">
+                            <div class="card-header-row">
+                                <div>
+                                    <h2 class="card-title"><i class="fas fa-user-circle"></i> Personal Information</h2>
+                                    <p class="card-subtitle">Your basic profile details and contact information</p>
+                                </div>
+                                <button class="btn-card-edit" onclick="enableEditMode()"><i class="fas fa-pen"></i> Edit</button>
+                            </div>
+                            <div id="personalInfoContent"></div>
+                        </section>
+
+                        <!-- Academic Information -->
+                        <section class="profile-card" id="academic">
+                            <div class="card-header-row">
+                                <div>
+                                    <h2 class="card-title"><i class="fas fa-graduation-cap"></i> Academic Information</h2>
+                                    <p class="card-subtitle">College, degree, branch, semester, graduation year, and CGPA</p>
+                                </div>
+                                <button class="btn-card-edit" onclick="enableEditMode()"><i class="fas fa-pen"></i> Edit</button>
+                            </div>
+                            <div id="academicInfoContent"></div>
+                        </section>
+
+                        <!-- Skills -->
+                        <section class="profile-card" id="skills">
+                            <div class="card-header-row">
+                                <div>
+                                    <h2 class="card-title"><i class="fas fa-code"></i> Technical Skills</h2>
+                                    <p class="card-subtitle">Technologies, frameworks, and programming languages you work with</p>
+                                </div>
+                                <button class="btn-card-edit" onclick="enableEditMode()"><i class="fas fa-pen"></i> Edit</button>
+                            </div>
+                            <div id="skillsContent"></div>
+                        </section>
+
+                        <!-- Coding Profiles -->
+                        <section class="profile-card" id="coding">
+                            <div class="card-header-row">
+                                <div>
+                                    <h2 class="card-title"><i class="fas fa-laptop-code"></i> Programming & Coding Profiles</h2>
+                                    <p class="card-subtitle">Connect your GitHub, LeetCode, CodeChef, and social developer handles</p>
+                                </div>
+                                <button class="btn-card-edit" onclick="enableEditMode()"><i class="fas fa-pen"></i> Edit</button>
+                            </div>
+                            <div id="codingProfilesContent"></div>
+                        </section>
+
+                        <!-- Interests -->
+                        <section class="profile-card" id="interests">
+                            <div class="card-header-row">
+                                <div>
+                                    <h2 class="card-title"><i class="fas fa-heart"></i> Technology Interests</h2>
+                                    <p class="card-subtitle">Domains and topics you are passionate about exploring</p>
+                                </div>
+                                <button class="btn-card-edit" onclick="enableEditMode()"><i class="fas fa-pen"></i> Edit</button>
+                            </div>
+                            <div id="interestsContent"></div>
+                        </section>
+
+                        <!-- Experience Level -->
+                        <section class="profile-card" id="experience">
+                            <div class="card-header-row">
+                                <div>
+                                    <h2 class="card-title"><i class="fas fa-chart-line"></i> Experience Level</h2>
+                                    <p class="card-subtitle">Your overall development experience stage</p>
+                                </div>
+                                <button class="btn-card-edit" onclick="enableEditMode()"><i class="fas fa-pen"></i> Edit</button>
+                            </div>
+                            <div id="experienceContent"></div>
+                        </section>
+
+                        <!-- Project Preferences -->
+                        <section class="profile-card" id="project-prefs">
+                            <div class="card-header-row">
+                                <div>
+                                    <h2 class="card-title"><i class="fas fa-sliders-h"></i> Project & Team Preferences</h2>
+                                    <p class="card-subtitle">Preferred roles, domains, team size, and availability status</p>
+                                </div>
+                                <button class="btn-card-edit" onclick="enableEditMode()"><i class="fas fa-pen"></i> Edit</button>
+                            </div>
+                            <div id="projectPreferencesContent"></div>
+                        </section>
+
+                        <!-- Career Goals -->
+                        <section class="profile-card" id="career-goals">
+                            <div class="card-header-row">
+                                <div>
+                                    <h2 class="card-title"><i class="fas fa-bullseye"></i> Career Goals</h2>
+                                    <p class="card-subtitle">What you aim to achieve through your projects and collaboration</p>
+                                </div>
+                                <button class="btn-card-edit" onclick="enableEditMode()"><i class="fas fa-pen"></i> Edit</button>
+                            </div>
+                            <div id="careerGoalsContent"></div>
+                        </section>
+
+                        <!-- Availability & Working Style -->
+                        <section class="profile-card" id="availability">
+                            <div class="card-header-row">
+                                <div>
+                                    <h2 class="card-title"><i class="fas fa-clock"></i> Availability & Working Style</h2>
+                                    <p class="card-subtitle">Hours per week available for collaboration and preferred time</p>
+                                </div>
+                                <button class="btn-card-edit" onclick="enableEditMode()"><i class="fas fa-pen"></i> Edit</button>
+                            </div>
+                            <div id="availabilityContent"></div>
+                        </section>
+
+                        <!-- AI Preferences -->
+                        <section class="profile-card" id="ai-prefs">
+                            <div class="card-header-row">
+                                <div>
+                                    <h2 class="card-title"><i class="fas fa-robot"></i> AI Assistant Preferences</h2>
+                                    <p class="card-subtitle">Customize SkillSync AI tone and feature recommendations</p>
+                                </div>
+                                <button class="btn-card-edit" onclick="enableEditMode()"><i class="fas fa-pen"></i> Edit</button>
+                            </div>
+                            <div id="aiPreferencesContent"></div>
+                        </section>
+
+                        <!-- Languages -->
+                        <section class="profile-card" id="languages">
+                            <div class="card-header-row">
+                                <div>
+                                    <h2 class="card-title"><i class="fas fa-language"></i> Spoken Languages</h2>
+                                    <p class="card-subtitle">Languages you communicate in for team projects</p>
+                                </div>
+                                <button class="btn-card-edit" onclick="enableEditMode()"><i class="fas fa-pen"></i> Edit</button>
+                            </div>
+                            <div id="languagesContent"></div>
+                        </section>
+
+                        <!-- Dedicated Resume Section -->
+                        <section class="profile-card" id="resume">
+                            <div class="card-header-row">
+                                <div>
+                                    <h2 class="card-title"><i class="fas fa-file-pdf"></i> Resume Document</h2>
+                                    <p class="card-subtitle">Upload and manage your official CV / Resume</p>
+                                </div>
+                                <button class="btn-card-edit" onclick="enableEditMode()"><i class="fas fa-pen"></i> Edit</button>
+                            </div>
+                            <div id="resumeContent"></div>
+                        </section>
+
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Sticky Floating Save Bar (Appears when in Edit Mode) -->
+        <div class="floating-save-bar" id="floatingSaveBar">
+            <div class="save-bar-info">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>You have unsaved profile edits</span>
+            </div>
+            <div class="edit-mode-controls">
+                <button class="btn btn-secondary btn-sm" onclick="cancelEditMode()"><i class="fas fa-times"></i> Discard</button>
+                <button class="btn btn-success btn-sm" onclick="saveProfile()"><i class="fas fa-check"></i> Save Changes</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/navbar.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>
