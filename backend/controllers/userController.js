@@ -1,9 +1,36 @@
 const User = require("../models/User");
+const cloudinary = require("../config/cloudinary");
 
 const updateOnboarding = async (req, res) => {
     try {
         // Get the logged-in user's ID from JWT middleware
         const userId = req.user.userId;
+        
+        let profileImageUrl = null;
+
+if (req.files && req.files.profileImage) {
+    const file = req.files.profileImage[0];
+
+    const result = await new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+            {
+                folder: "skillsync/profile-images",
+                resource_type: "image"
+            },
+            (error, result) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(result);
+                }
+            }
+        );
+
+        stream.end(file.buffer);
+    });
+
+    profileImageUrl = result.secure_url;
+}
 
         // Update the user's profile
         const updatedUser = await User.findByIdAndUpdate(
