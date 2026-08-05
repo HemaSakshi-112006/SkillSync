@@ -404,15 +404,13 @@ Object.entries(onboardingData).forEach(([key, value]) => {
         onboardingData.profileImageFile
       );
  } 
-        
-       const res = await fetch(`${BASE_URL}/user/onboarding`,{
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(onboardingData)
-        });
+  const res = await fetch(`${BASE_URL}/user/onboarding`, {
+    method: 'PUT',
+    headers: {
+        'Authorization': `Bearer ${token}`
+    },
+    body: formData
+});
         const json = await res.json();
         if (json.user) {
             // Update local storage

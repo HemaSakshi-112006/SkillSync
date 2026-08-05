@@ -5,6 +5,29 @@ const updateOnboarding = async (req, res) => {
     try {
         // Get the logged-in user's ID from JWT middleware
         const userId = req.user.userId;
+
+        const onboardingData = { ...req.body };
+
+const arrayFields = [
+    "skills",
+    "interests",
+    "preferredRoles",
+    "preferredDomains",
+    "careerGoals",
+    "projectTypes",
+    "languages",
+    "aiFeatures"
+];
+
+arrayFields.forEach((field) => {
+    if (onboardingData[field]) {
+        try {
+            onboardingData[field] = JSON.parse(onboardingData[field]);
+        } catch (error) {
+            console.log(`Could not parse ${field}`);
+        }
+    }
+});
         
         let profileImageUrl = null;
 
@@ -37,7 +60,7 @@ if (req.files && req.files.profileImage) {
             userId,
             {
     $set: {
-        ...req.body,
+        ...onboardingData,
         ...(profileImageUrl && { profileImage: profileImageUrl })
     }
 },
