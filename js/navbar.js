@@ -57,6 +57,11 @@ class AppNavbar extends HTMLElement {
             </nav>
 
             <div class="topbar-right">
+                <button class="topbar-btn theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Day/Night Mode">
+                    <i class="fas fa-sun theme-sun-icon"></i>
+                    <i class="fas fa-moon theme-moon-icon"></i>
+                </button>
+
                 <button class="topbar-btn" id="notifBtn" aria-label="Notifications">
                     <i class="fas fa-bell"></i>
                     <span class="notif-dot"></span>
@@ -95,6 +100,24 @@ class AppNavbar extends HTMLElement {
     }
 
     initScripts() {
+        // Theme Toggle logic
+        const themeToggleBtn = this.querySelector('#themeToggleBtn');
+        const applyTheme = (theme) => {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        };
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        applyTheme(savedTheme);
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+                const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                applyTheme(nextTheme);
+            });
+        }
+
         // Notifications toggle
         const notifBtn = this.querySelector('#notifBtn');
         if (notifBtn) {

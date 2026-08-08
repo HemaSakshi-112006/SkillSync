@@ -97,3 +97,52 @@
 .dropdown-item.logout { color: #f43f5e; margin-top: auto; }
 .dropdown-item.logout:hover { background: rgba(244,63,94,0.1); color: #f43f5e; }
 .dropdown-item.logout i { color: #f43f5e; }
+
+/* ===== THEME TOGGLE & DAY MODE LIGHT THEME ===== */
+.theme-toggle-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .theme-sun-icon { display: block; color: #f59e0b; }
+[data-theme="dark"] .theme-moon-icon { display: none; }
+[data-theme="light"] .theme-sun-icon { display: none; }
+[data-theme="light"] .theme-moon-icon { display: block; color: #6366f1; }
+:root:not([data-theme="light"]) .theme-sun-icon { display: block; color: #f59e0b; }
+:root:not([data-theme="light"]) .theme-moon-icon { display: none; }
+
+[data-theme="light"] .topbar {
+    background: rgba(255, 255, 255, 0.88);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+[data-theme="light"] .topbar-logo .logo-text { color: #0f172a; }
+[data-theme="light"] .topbar-nav .nav-item { color: #475569; }
+[data-theme="light"] .topbar-nav .nav-item:hover { background: rgba(0, 0, 0, 0.05); color: #0f172a; }
+[data-theme="light"] .topbar-nav .nav-item.active {
+    background: rgba(99, 102, 241, 0.1);
+    color: #4f46e5;
+    border-color: rgba(99, 102, 241, 0.2);
+}
+[data-theme="light"] .topbar-btn {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #475569;
+}
+[data-theme="light"] .topbar-btn:hover { background: rgba(0, 0, 0, 0.08); color: #0f172a; }
+[data-theme="light"] .user-menu:hover { background: rgba(0, 0, 0, 0.04); }
+[data-theme="light"] .user-name { color: #0f172a; }
+[data-theme="light"] .dropdown-icon { color: #64748b; }
+[data-theme="light"] .profile-dropdown-menu {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+}
+[data-theme="light"] .dropdown-name { color: #0f172a; }
+[data-theme="light"] .dropdown-username { color: #64748b; }
+[data-theme="light"] .dropdown-divider { background: rgba(0, 0, 0, 0.06); }
+[data-theme="light"] .dropdown-item { color: #334155; }
+[data-theme="light"] .dropdown-item i { color: #64748b; }
+[data-theme="light"] .dropdown-item:hover { background: rgba(99, 102, 241, 0.08); color: #4f46e5; }
+[data-theme="light"] .dropdown-item:hover i { color: #4f46e5; }
+

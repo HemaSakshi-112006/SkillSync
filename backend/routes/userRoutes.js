@@ -2,9 +2,29 @@ const express = require("express");
 
 const router = express.Router();
 
-const { updateOnboarding } = require("../controllers/userController");
+const {
+    updateOnboarding,
+    getMyProfile,
+    updateMyProfile
+} = require("../controllers/userController");
+
 const authMiddleware = require("../middleware/authMiddleware");
 const upload = require("../middleware/upload");
+
+
+// Get logged-in user's profile
+router.get(
+    "/profile",
+    authMiddleware,
+    getMyProfile
+);
+
+router.put(
+    "/profile",
+    authMiddleware,
+    updateMyProfile
+);
+
 
 // Update logged-in user's onboarding/profile data
 router.put(

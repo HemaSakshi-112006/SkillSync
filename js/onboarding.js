@@ -272,7 +272,7 @@ function collectStep1() {
     onboardingData.fullName   = v('obFullName');
     onboardingData.username   = v('obUsername');
     onboardingData.gender     = v('obGender');
-    onboardingData.dateOfBirth = v('obDOB');
+    onboardingData.dateOfBirth = v('obDOB') || null;
     onboardingData.phoneNumber = v('obPhone');
     onboardingData.location   = v('obLocation');
     onboardingData.bio        = v('obBio');

@@ -1,87 +1,5 @@
-/**
- * SkillSync Profile Page JavaScript
- * Mirrors the complete onboarding data collection system with interactive edit mode,
- * onboarding chip selectors, radio options, dropdowns, checkbox grids, and photo uploads.
- */
+let currentProfile = null;
 
-// ============================================================
-// DEFAULT MOCK PROFILE DATA (matching onboarding structure)
-// ============================================================
-const DEFAULT_PROFILE_DATA = {
-    // Personal Profile (Step 1)
-    fullName: "Ria Jain",
-    username: "ria_smart",
-    email: "ria.jain@example.com",
-    gender: "Female",
-    dateOfBirth: "2003-05-14",
-    phoneNumber: "+91 98765 43210",
-    location: "Bengaluru, Karnataka",
-    bio: "Passionate AI & Data Science student builder | Full-stack enthusiast | Building next-gen AI tools for student collaboration.",
-    
-    // Banner & Avatar
-    bannerImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
-    profileImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
-    
-    // Academic Profile (Step 2)
-    college: "PES University, Bengaluru",
-    degree: "B.Tech",
-    branch: "Artificial Intelligence & Data Science",
-    semester: "4",
-    section: "B",
-    usn: "1PE22AI042",
-    graduationYear: "2026",
-    cgpa: "9.2",
-    
-    // Skills (Step 3 - Categorized)
-    skills: ["Python", "Java", "JavaScript", "React", "Node.js", "Express", "MongoDB", "PyTorch", "Flutter", "Azure", "Git"],
-    
-    // Interests & Goals (Step 4)
-    interests: ["Artificial Intelligence", "Machine Learning", "Web Development", "Cloud", "UI/UX"],
-    preferredDomains: ["Education", "Automation", "E-commerce"],
-    preferredRoles: ["Frontend", "Full Stack", "AI Engineer"],
-    careerGoals: ["Build Portfolio", "Get Internship", "Open Source"],
-    projectTypes: ["AI/ML Projects", "Web Development", "Startup Ideas"],
-    experienceLevel: "Intermediate",
-    
-    // Collaboration Preferences (Step 5)
-    lookingForTeam: true,
-    preferredTeamSize: "4",
-    availability: "10 hrs/week",
-    workingStyle: "Evening",
-    languages: ["English", "Hindi", "Kannada"],
-    
-    // Portfolio & Social Links (Step 6)
-    github: "https://github.com/riajain-dev",
-    linkedin: "https://linkedin.com/in/ria-jain-dev",
-    portfolio: "https://riajain.dev",
-    leetcode: "ria_smart",
-    codechef: "ria_jain",
-    hackerrank: "ria_jain",
-    codeforces: "ria_smart",
-    
-    // AI Preferences (Step 7)
-    aiTone: "Professional",
-    aiFeatures: [
-        "projectRecommendations",
-        "teammateRecommendations",
-        "featureSuggestions",
-        "taskBreakdown",
-        "learningRoadmap",
-        "learningRecommendations",
-        "resumeSuggestions",
-        "portfolioReview"
-    ],
-    
-    // Resume Details
-    resume: {
-        name: "Ria_Jain_Resume.pdf",
-        size: "1.2 MB",
-        updatedAt: "2026-07-28",
-        url: "#"
-    },
-    
-    isProfileCompleted: true
-};
 
 // ============================================================
 // ONBOARDING MASTER CONSTANTS FOR CHIPS & RADIOS
@@ -154,32 +72,57 @@ const ONBOARDING_AI_FEATURES = [
 ];
 
 // State
-let profileData = {};
-let draftData = {};
+let profileData = null;
+let draftData = null;
 let isEditing = false;
 
 // ============================================================
 // INITIALIZATION
 // ============================================================
 document.addEventListener("DOMContentLoaded", () => {
-    loadProfileData();
+    loadProfile();
     initFileUploadHandlers();
     initSidebarScrollSpy();
-    renderProfile();
 });
 
-function loadProfileData() {
+async function loadProfile() {
     try {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            const parsed = JSON.parse(storedUser);
-            profileData = { ...DEFAULT_PROFILE_DATA, ...parsed };
-        } else {
-            profileData = { ...DEFAULT_PROFILE_DATA };
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            console.error("No authentication token found");
+            window.location.href = "login.html";
+            return;
         }
-    } catch (e) {
-        console.error("Error loading profile data:", e);
-        profileData = { ...DEFAULT_PROFILE_DATA };
+
+        const response = await fetch(`${BASE_URL}/user/profile`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || "Failed to fetch profile");
+        }
+
+        console.log("Profile data received:", result);
+
+        // Get the actual user object from backend
+        profileData = result.user;
+
+        // Create a separate copy for editing later
+        draftData = JSON.parse(JSON.stringify(profileData));
+
+        console.log("profileData:", profileData);
+
+        // Now render the actual MongoDB data
+        renderProfile();
+
+    } catch (error) {
+        console.error("Error loading profile:", error);
     }
 }
 
@@ -208,32 +151,72 @@ function cancelEditMode() {
     showFloatingSaveBar(false);
 }
 
-function saveProfile() {
+async function saveProfile() {
     // Validate required fields
     const fnInput = document.getElementById("edit-fullName");
     const unInput = document.getElementById("edit-username");
-    
+
     if (fnInput && !fnInput.value.trim()) {
         showToast("Full name is required", "warning");
         return;
     }
+
     if (unInput && !unInput.value.trim()) {
         showToast("Username is required", "warning");
         return;
     }
 
-    // Collect current values from text/select inputs
-    collectFormInputs();
+    try {
+        // Collect current values from text/select/chip/radio inputs
+        collectFormInputs();
+        console.log("DATE BEFORE SAVE:", draftData.dateOfBirth);
+console.log("DRAFT DATA BEFORE PUT:", draftData);
 
-    // Save
-    profileData = JSON.parse(JSON.stringify(draftData));
-    saveProfileToStorage();
+        const token = localStorage.getItem("token");
 
-    isEditing = false;
-    showFloatingSaveBar(false);
-    renderProfile();
+        if (!token) {
+            showToast("Please login again", "warning");
+            return;
+        }
 
-    showToast("Profile updated successfully!", "success");
+        // Send edited data to MongoDB
+        const response = await fetch(`${BASE_URL}/user/profile`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(draftData)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || "Failed to update profile");
+        }
+
+        console.log("PROFILE UPDATED:", result);
+
+        // Use the updated data returned by MongoDB
+        profileData = result.user;
+
+        // Keep draftData synchronized
+        draftData = JSON.parse(JSON.stringify(profileData));
+
+        // Exit edit mode
+        isEditing = false;
+
+        showFloatingSaveBar(false);
+
+        // Re-render using the updated MongoDB data
+        renderProfile();
+
+        showToast("Profile updated successfully!", "success");
+
+    } catch (error) {
+        console.error("Error updating profile:", error);
+        showToast("Failed to update profile", "error");
+    }
 }
 
 function collectFormInputs() {
@@ -248,7 +231,8 @@ function collectFormInputs() {
     draftData.username = val("edit-username") || draftData.username;
     draftData.email = val("edit-email") || draftData.email;
     draftData.gender = val("edit-gender");
-    draftData.dateOfBirth = val("edit-dateOfBirth");
+    const dateOfBirth = val("edit-dateOfBirth");
+    draftData.dateOfBirth = dateOfBirth || null;
     draftData.phoneNumber = val("edit-phoneNumber");
     draftData.location = val("edit-location");
     draftData.bio = val("edit-bio");
@@ -278,6 +262,13 @@ function collectFormInputs() {
 function renderProfile() {
     const data = isEditing ? draftData : profileData;
 
+    if (!data) {
+        console.error("No profile data available");
+        return;
+    }
+
+    console.log("DATA BEING SENT TO RENDER:", data);
+
     renderHeader(data);
     renderPersonalInfo(data);
     renderAcademicInfo(data);
@@ -292,7 +283,6 @@ function renderProfile() {
     renderLanguages(data);
     renderResumeSection(data);
 }
-
 // ============================================================
 // INDIVIDUAL SECTION RENDERERS
 // ============================================================
@@ -310,7 +300,7 @@ function renderHeader(data) {
     const headerActions = document.getElementById("headerActions");
     const avatarContainer = document.querySelector(".avatar-container");
 
-    if (bannerEl) bannerEl.style.backgroundImage = `url('${data.bannerImage}')`;
+    // Banner is now a static branded design — no image override needed
 
     if (data.profileImage) {
         avatarImgEl.src = data.profileImage;
@@ -353,14 +343,37 @@ function renderHeader(data) {
         }
     }
 
-    const bannerEditBtn = document.getElementById("bannerEditBtn");
     const avatarEditOverlay = document.getElementById("avatarEditOverlay");
-    if (bannerEditBtn) bannerEditBtn.style.display = isEditing ? "inline-flex" : "none";
     if (avatarEditOverlay) avatarEditOverlay.style.display = isEditing ? "flex" : "none";
     if (avatarContainer) {
         if (isEditing) avatarContainer.classList.add("editing");
         else avatarContainer.classList.remove("editing");
     }
+}
+
+function formatDateForInput(dateVal) {
+    if (!dateVal) return "";
+    try {
+        if (typeof dateVal === "string") {
+            if (dateVal.includes("T")) {
+                return dateVal.split("T")[0];
+            }
+            if (/^\d{4}-\d{2}-\d{2}$/.test(dateVal)) {
+                return dateVal;
+            }
+        }
+        const d = new Date(dateVal);
+        if (isNaN(d.getTime())) return "";
+        return d.toISOString().split("T")[0];
+    } catch (e) {
+        return "";
+    }
+}
+
+function formatDateForDisplay(dateVal) {
+    if (!dateVal) return "Not specified";
+    const formatted = formatDateForInput(dateVal);
+    return formatted || "Not specified";
 }
 
 /* 2. Personal Profile (Step 1) */
@@ -377,7 +390,7 @@ function renderPersonalInfo(data) {
                 </div>
                 <div class="field-group">
                     <span class="field-label">Username</span>
-                    <div class="field-value">@${escapeHtml(data.username.replace('@', ''))}</div>
+                    <div class="field-value">@${escapeHtml(data.username || '').replace('@', '')}</div>
                 </div>
                 <div class="field-group">
                     <span class="field-label">Gender</span>
@@ -385,7 +398,7 @@ function renderPersonalInfo(data) {
                 </div>
                 <div class="field-group">
                     <span class="field-label">Date of Birth</span>
-                    <div class="field-value ${!data.dateOfBirth ? 'empty-val' : ''}">${escapeHtml(data.dateOfBirth || 'Not specified')}</div>
+                    <div class="field-value ${!data.dateOfBirth ? 'empty-val' : ''}">${escapeHtml(formatDateForDisplay(data.dateOfBirth))}</div>
                 </div>
                 <div class="field-group">
                     <span class="field-label">Email Address</span>
@@ -428,7 +441,7 @@ function renderPersonalInfo(data) {
                 </div>
                 <div class="ob-field">
                     <label class="ob-label" for="edit-dateOfBirth">Date of Birth</label>
-                    <input class="ob-input" id="edit-dateOfBirth" type="date" value="${escapeHtml(data.dateOfBirth || '')}">
+                    <input class="ob-input" id="edit-dateOfBirth" type="date" value="${escapeHtml(formatDateForInput(data.dateOfBirth))}">
                 </div>
                 <div class="ob-field">
                     <label class="ob-label" for="edit-email">Email Address</label>

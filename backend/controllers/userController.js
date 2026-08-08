@@ -6,6 +6,9 @@ const updateOnboarding = async (req, res) => {
         // Get the logged-in user's ID from JWT middleware
         const userId = req.user.userId;
         const onboardingData = { ...req.body };
+        if (onboardingData.dateOfBirth === "") {
+            onboardingData.dateOfBirth = null;
+        }
 
 const arrayFields = [
     "skills",
@@ -117,7 +120,88 @@ if (req.files && req.files.resume) {
         });
     }
 };
+const getMyProfile = async (req, res) => {
+    try {
+        // Get the logged-in user's ID from JWT
+        const userId = req.user.userId;
 
+        // Find that SAME user in MongoDB
+        const user = await User.findById(userId).select("-password");
+
+        // User not found
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        // Send the user's existing MongoDB data
+        res.status(200).json({
+            user: user
+        });
+
+    } catch (error) {
+        console.error("Get profile error:", error);
+
+        res.status(500).json({
+            message: "Failed to fetch profile",
+            error: error.message
+        });
+    }
+};
+const updateMyProfile = async (req, res) => {
+    try {
+        const userId = req.user.userId;
+        const updateData = { ...req.body };
+
+        if (updateData.dateOfBirth === "") {
+            updateData.dateOfBirth = null;
+        }
+
+        console.log("UPDATE PROFILE USER ID:", userId);
+        console.log("UPDATE PROFILE BODY:", updateData);
+
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            {
+                $set: updateData
+            },
+            {
+                new: true,
+                runValidators: true
+            }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        console.log(
+            "UPDATED DATE FROM MONGOOSE:",
+            updatedUser.dateOfBirth
+        );
+
+        const safeUser = updatedUser.toObject();
+        delete safeUser.password;
+
+        res.status(200).json({
+            message: "Profile updated successfully",
+            user: safeUser
+        });
+
+    } catch (error) {
+        console.error("Update profile error:", error);
+
+        res.status(500).json({
+            message: "Failed to update profile",
+            error: error.message
+        });
+    }
+};
 module.exports = {
-    updateOnboarding
+    updateOnboarding,
+    getMyProfile,
+    updateMyProfile
 };

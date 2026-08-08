@@ -25,22 +25,49 @@
         <main class="main-content">
             <div class="profile-container">
 
-                <!-- Hidden File Inputs for Banner, Avatar, and Resume -->
-                <input type="file" id="bannerFileInput" accept="image/*" style="display:none;">
+                <!-- Hidden File Inputs for Avatar and Resume only (banner removed) -->
                 <input type="file" id="avatarFileInput" accept="image/*" style="display:none;">
                 <input type="file" id="resumeFileInput" accept=".pdf,.doc,.docx" style="display:none;">
 
                 <!-- ============================================================
-                     1. PROFILE HEADER CARD (BANNER PHOTO + AVATAR + HEADER INFO)
+                     1. PROFILE HEADER CARD (BRANDED BANNER + AVATAR + HEADER INFO)
                      ============================================================ -->
                 <section class="profile-header-card">
-                    <!-- Background Cover Banner Photo -->
+                    <!-- SkillSync Branded Banner (replaces background photo) -->
                     <div class="profile-banner" id="profileBanner">
+                        <div class="banner-bg-layer"></div>
+
+                        <!-- Animated floating orbs -->
+                        <div class="banner-orb banner-orb-1"></div>
+                        <div class="banner-orb banner-orb-2"></div>
+                        <div class="banner-orb banner-orb-3"></div>
+
+                        <!-- Grid overlay -->
+                        <div class="banner-grid"></div>
+
+                        <!-- Branded content inside banner -->
+                        <div class="banner-brand-content">
+                            <div class="banner-brand-logo">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                                </svg>
+                                SkillSync
+                            </div>
+                            <div class="banner-skill-chips">
+                                <span class="banner-chip"><i class="fas fa-code"></i> Build Together</span>
+                                <span class="banner-chip"><i class="fas fa-users"></i> Find Your Team</span>
+                                <span class="banner-chip"><i class="fas fa-rocket"></i> Launch Projects</span>
+                                <span class="banner-chip"><i class="fas fa-brain"></i> AI-Powered</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating code snippets decoration -->
+                        <div class="banner-code-deco banner-code-1"><span class="code-kw">const</span> <span class="code-var">skills</span> <span class="code-op">=</span> [<span class="code-str">"React"</span>, <span class="code-str">"AI"</span>];</div>
+                        <div class="banner-code-deco banner-code-2"><span class="code-kw">team</span>.<span class="code-fn">sync</span>() <span class="code-comment">// 🚀</span></div>
+
                         <div class="profile-banner-overlay"></div>
-                        <button class="banner-edit-btn" id="bannerEditBtn" onclick="triggerFileInput('bannerFileInput')" style="display:none;">
-                            <i class="fas fa-camera"></i> Change Cover Photo
-                        </button>
                     </div>
+
 
                     <!-- Header Body Info & Avatar -->
                     <div class="header-body">
